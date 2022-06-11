@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import Response from "../components/Response";
 import { cities } from "../data";
-import ScrollToTop from "react-scroll-to-top";
 
 export default function PageCities() {
   const [arrayFilter, setArrayFilter] = useState([]);
@@ -24,7 +23,6 @@ export default function PageCities() {
 
   return (
     <div className="flex flex-col items-center my-3">
-      <ScrollToTop smooth />
       <input
         type="text"
         name="name"
