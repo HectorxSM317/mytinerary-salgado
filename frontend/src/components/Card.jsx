@@ -1,30 +1,42 @@
 import React from "react";
-import {Link as LinkRouter} from 'react-router-dom'
+import { Link as LinkRouter } from "react-router-dom";
 
-export default function Card({city}) {
-  
+export default function Card({ city }) {
   return (
     <>
       <div
-        className="mx-3 my-2 flex w-96 flex-col justify-center bg-white rounded-2xl shadow-xl shadow-slate-500/60"
+        data-aos="flip-left"
+        data-aos-easing="ease-out-cubic"
+        data-aos-duration="1500"
+        className="relative  group w-72 h-72 rounded-md border-4 border-neutral-800 overflow-hidden bg-black m-2"
       >
         <img
-          className="aspect-video w-96 rounded-t-2xl object-cover object-center"
+          className="object-cover w-full h-full transform duration-700 backdrop-opacity-100"
           src={city.img}
-          alt='imgcity'
+          alt='imagecity'
         />
-        <div className="p-4 flex flex-col items-center">
-          <small className="text-blue-400 text-3xl"></small>
-          <h1 className="text-2xl font-medium text-slate-600 pb-2">
-            {city.name}
-          </h1>
-          <p className="text-sm tracking-tight font-light text-slate-400 leading-6">
-            Dodge is an American brand of automobiles and a division of
-            Stellantis, based in Auburn Hills, Michigan..
-          </p>
-          <LinkRouter to={`/detail/${city.id}`}>View More</LinkRouter>
+        <div className="absolute w-full h-full shadow-2xl opacity-20 transform duration-500 inset-y-full group-hover:-inset-y-0"></div>
+        <div className="absolute bg-gradient-to-t from-black w-full h-full transform duration-500 inset-y-3/4 group-hover:-inset-y-0">
+          <div className="absolute w-full flex place-content-center">
+            <p className="capitalize font-serif font-bold text-3xl text-center shadow-2xl text-white mt-6 w-full bg-slate-800/50m, border-y-4">
+              {city.name}
+            </p>
+          </div>
+          <div className="absolute w-full flex place-content-center mt-20">
+            <p className="font-sans text-center w-4/5 text-white mt-5">
+              Collaborative effort of a group to achieve a common goal the most
+              effective and efficient way!
+            </p>
+          </div>
+          <LinkRouter
+            to={`/detail/${city.id}`}
+            className="absolute left-1/4 alig bottom-4 text-center pt-2  bg-white text-black font-bold rounded-lg h-10 w-32"
+          >
+            View more
+          </LinkRouter>
         </div>
       </div>
     </>
   );
 }
+

@@ -7,24 +7,21 @@ import PageCities from './pages/PageCities';
 import PageNotFound from './pages/PageNotFound';
 import Detail from './pages/Detail';
 import ScrollToTop from "react-scroll-to-top";
-import { useEffect } from 'react';
+import { MdCallMerge as MySVG } from "react-icons/md";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+// ..
+
 
 
 function App() {
-
-  useEffect(() =>{
-    setTimeout(() =>{
-      window.scrollTo(0, 0)
-    }, 500)
-
-  }, [])
-
-
-
+  AOS.init();
+  
+  
   return (
     <div className="App">
       <Navbar />
-      <ScrollToTop smooth />
+      <ScrollToTop smooth className='toTop animate-bounce' top={500} component={<MySVG width={20} />}/>
       <Routes>
           <Route path="/" element={<Index /> } />
           <Route path='/cities' element={<PageCities /> } />

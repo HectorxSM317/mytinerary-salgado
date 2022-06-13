@@ -1,4 +1,3 @@
-import { Disclosure } from "@headlessui/react";
 import { IconContext } from "react-icons";
 import { BsFacebook } from "react-icons/bs";
 import { BsInstagram } from "react-icons/bs";
@@ -20,8 +19,8 @@ function classNames(...classes) {
 
 export default function Footer() {
   return (
-    <Disclosure as="footer" className="bg-black hFooter flex  items-center">
-      <div className="flex items-center justify-around sm:justify-around w-full">
+    
+      <div as='footer' className="footer flex items-center bg-black justify-around sm:justify-around w-full">
         <div className="flex flex-col border-r-4 pr-5">
           {navigation.map((item) => (
             <LinkRouter
@@ -44,26 +43,34 @@ export default function Footer() {
             My T
           </h1>
           <p className="text-white hidden sm:block ">
-            &#169;Copyright-All rights reserved - Héctor Salgado Medina
+            &#169;Copyright-All rights reserved
           </p>
         </div>
-        <IconContext.Provider value={{ color: "white", size: "2rem" }}>
-          <div className="flex flex-col sm:flex-row">
-            <a target="_blank" href="https://es-la.facebook.com/">
-              <BsFacebook />
-            </a>
-            <a target="_blank" href="https://www.instagram.com/">
-              <BsInstagram />
-            </a>
-            <a target="_blank" href="https://www.whatsapp.com/?lang=es">
-              <BsWhatsapp />
-            </a>
-            <a target="_blank" href="https://cl.linkedin.com/">
-              <BsLinkedin />
-            </a>
-          </div>
+        <IconContext.Provider value={{ color: "white", size: "2rem"}}>
+            <div className="flex flex-col sm:flex-row">
+              <div className="mb-2 sm:mb-0 sm:mr-2 ">
+                <a target="_blank" rel="noopener noreferrer" href="https://es-la.facebook.com/" >
+                  <BsFacebook />
+                </a>
+              </div>
+              <div className="mb-2 sm:mb-0 sm:mr-2">
+                <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/">
+                  <BsInstagram />
+                </a>
+              </div>
+              <div className="mb-2 sm:mb-0 sm:mr-2">
+                <a target="_blank" rel="noopener noreferrer" href="https://www.whatsapp.com/?lang=es">
+                  <BsWhatsapp />
+                </a>
+              </div>
+              <div>
+                <a target="_blank" rel="noopener noreferrer" href="https://cl.linkedin.com/">
+                  <BsLinkedin />
+                </a>
+              </div>
+            </div>
         </IconContext.Provider>
       </div>
-    </Disclosure>
+    
   );
 }

@@ -10,7 +10,7 @@ export default function Detail() {
     
 
   return (
-    <div className='bodyDetail'>
+    <div className='bodyDetail flex justify-center items-center'>
         
         <CardDetail city={cities.filter(city => city.id === Number(id))} />
         
