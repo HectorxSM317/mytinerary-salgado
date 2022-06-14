@@ -24,6 +24,7 @@ function App() {
       <ScrollToTop smooth className='toTop animate-bounce' top={500} component={<MySVG width={20} />}/>
       <Routes>
           <Route path="/" element={<Index /> } />
+          <Route path="/index" element={<Index /> } />
           <Route path='/cities' element={<PageCities /> } />
           <Route path='/*' element={<PageNotFound /> } />
           <Route path='/detail/:id' element={<Detail />} />

@@ -10,7 +10,7 @@ export default function Detail() {
     
 
   return (
-    <div className='bodyDetail flex justify-center items-center'>
+    <div className="bodyDetail flex justify-center bg-gradient-to-br from-black via-zinc-900 to-black py-5">
         
         <CardDetail city={cities.filter(city => city.id === Number(id))} />
         

@@ -20,7 +20,7 @@ function classNames(...classes) {
 export default function Footer() {
   return (
     
-      <div as='footer' className="footer flex items-center bg-black justify-around sm:justify-around w-full">
+      <div as='footer' className="footer flex items-center bg-black justify-around sm:justify-around py-5 ">
         <div className="flex flex-col border-r-4 pr-5">
           {navigation.map((item) => (
             <LinkRouter
