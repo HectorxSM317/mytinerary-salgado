@@ -12,7 +12,7 @@ export default function Card({ city }) {
       >
         <img
           className="object-cover w-full h-full transform duration-700 backdrop-opacity-100"
-          src={city.img}
+          src={city.detailImg1}
           alt='imagecity'
         />
         <div className="absolute w-full h-full shadow-2xl opacity-20 transform duration-500 inset-y-full group-hover:-inset-y-0"></div>
@@ -29,7 +29,7 @@ export default function Card({ city }) {
             </p>
           </div>
           <LinkRouter
-            to={`/detail/${city.id}`}
+            to={`/detail/${city._id}`}
             className="absolute left-1/4 alig bottom-4 text-center pt-2  bg-white text-black font-bold rounded-lg h-10 w-32"
           >
             View more

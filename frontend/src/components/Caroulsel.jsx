@@ -2,6 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { cities } from "../data";
 import { Autoplay, Pagination, Grid, Navigation} from "swiper";
 
+
 // Import Swiper styles
 import "swiper/css/bundle";
 import "swiper/css/pagination";
@@ -11,9 +12,10 @@ import '../styles/App.css'
 
 
 
-
-
 export default function Carousel() {
+
+
+
   return (
     <div className="border-t-8 bg-black flex flex-col items-center justify-center h-screen">
       <h2 className="text-white textPopular text-3xl md:text-4xl my-3 lg:text-5xl">Popular MyTineraries</h2>

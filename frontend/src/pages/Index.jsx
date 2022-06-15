@@ -1,11 +1,15 @@
 import React from "react";
 import Carousel from "../components/Caroulsel";
-import { useEffect } from "react";
 import MyTinerary from "../components/MyTinerary";
 import Button from "../components/Button";
 import ContainerHero from "../components/ContainerHero";
+import {useEffect} from 'react'
+
+
 
 export default function Index() {
+  
+  
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 0);

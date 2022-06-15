@@ -21,13 +21,13 @@ export const cities = [
     img: 'https://media.traveler.es/photos/61377f4fccdecaa3de6725fb/master/w_1920%2Cc_limit/23751.jpg',
     img2: 'https://wallpaperaccess.com/full/115106.jpg',
     img3: 'https://wallpaperaccess.com/full/389122.jpg',
-    img4: 'https://wallpaperaccess.com/full/129555.jpg' },
+    img4: 'https://wallpaperaccess.com/full/129555.jpg'},
 
     {id: 5, name: 'Chicago', country: 'EE UU',
     img: 'https://media.traveler.es/photos/61377f4fbf63e581e010260e/master/w_1920%2Cc_limit/23752.jpg',
     img2: 'https://wallpaperaccess.com/full/200022.jpg',
     img3: 'https://wallpaperaccess.com/full/1137452.jpg',
-    img4: 'https://wallpaperaccess.com/full/1275910.jpg' },
+    img4: 'https://wallpaperaccess.com/full/1275910.jpg'},
 
     {id: 6, name: 'Venice', country: 'Italy',
     img: 'https://media.traveler.es/photos/61377f4f06df43bef2d32020/master/w_1920%2Cc_limit/23755.jpg',
