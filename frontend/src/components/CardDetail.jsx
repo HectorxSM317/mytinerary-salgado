@@ -5,8 +5,7 @@ export default function CardDetail({ city }) {
   
   
   return (
-    city.map(city => {
-      return (
+    
       <div key={city._id} className="w-11/12 flex flex-col items-center sm:p-4">
       <div className="
       transition 
@@ -59,10 +58,10 @@ export default function CardDetail({ city }) {
 		      duration-500 
 		      ease-in-out 
 		      transform 
-		      hover: -translate-x-3
+		      hover:origin-center 
 		      hover:-rotate-3
 		      hover:scale-100
-        sm:w-2/3 lg:w-1/3 lg:h-full flex self-center mt-3 justify-center">
+        sm:w-2/3 lg:w-1/3 lg:h-full flex mt-3 justify-center">
           <img
             className="object-cover rounded-3xl lg:w-5/6 shadow-2xl shadow-slate-200/25"
             src={city.detailImg3}
@@ -71,7 +70,6 @@ export default function CardDetail({ city }) {
         </div>
       </div>
     </div>
-      )
-    })
+     
   );
 }

@@ -41,21 +41,13 @@ const citiesControllers = {
 
     // Con este controlador podemos crear objetos acorde al modelo y agregarlo a la coleccion
     addCity: async (req, res) => {
-        const {
-            name,
-            country,
-            description,
-            caruselImg,
-            detailImg1,
-            detailImg2,
-            detailImg3
-        } = req.body //Requerimos informacion del body tecleada por el usuario que está dentro de data
+        const {name,country,description,caruselImg,detailImg1,detailImg2,detailImg3} = req.body //Requerimos informacion del body tecleada por el usuario que está dentro de data y lo desestructuramos
         console.log(req.body)
         let city;
         let error = null;
         try {
-            city = await new City({ //Si no existe en la colección, esta crea uya nueva instancia de Cities
-                name: name, //Se setean nueva informacion para las variables
+            city = await new City({ //Si no existe en la colección, esta crea(new) un modelo (City)
+                name: name, //Se setean la informacion para las variables
                 country: country,
                 description: description,
                 caruselImg: caruselImg,
