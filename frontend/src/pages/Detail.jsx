@@ -8,12 +8,21 @@ import CardDetail from '../components/CardDetail'
 
 
 export default function Detail() {
-  const [city, setCity] = useState();
 
-  const {id} = useParams()
+ 
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 200);
+  }, []);
+
+
+  const [city, setCity] = useState();
+  const {id} = useParams();
+  const newurl = 'http://localhost:4000';
 
 useEffect(() => {
-  axios.get(`http://localhost:4000/api/cities/${id}`)
+  axios.get(`${newurl}/api/cities/${id}`)
   .then(resp => setCity(resp.data.response)
   )},[id])
 

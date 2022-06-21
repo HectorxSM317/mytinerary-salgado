@@ -120,7 +120,7 @@
     font-size: 2rem;
 }
 
-.perspective {
+/* .perspective {
   -webkit-perspective: 1800px;
           perspective: 1800px;
 }
@@ -147,4 +147,4 @@
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg);
 }
-
+ */

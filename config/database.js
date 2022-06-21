@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-mongoose.connect(process.env.MONGO_URI,//Cluster de conexion MONGO_URI nombre de variable
+mongoose.connect(process.env.MONGO_URI,
     {
         useUnifiedTopology: true,
         useNewUrlParser: true,
