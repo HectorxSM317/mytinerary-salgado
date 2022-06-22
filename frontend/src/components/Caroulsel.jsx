@@ -1,6 +1,9 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { cities } from "../data";
+// import { cities } from "../data";
 import { Autoplay, Pagination, Grid, Navigation} from "swiper";
+import React from "react";
+import { connect } from "react-redux";
+import citiesActions from '../redux/actions/citiesActions'
 
 
 // Import Swiper styles
@@ -12,7 +15,11 @@ import '../styles/App.css'
 
 
 
-export default function Carousel() {
+function Carousel(props) {
+  console.log(props)
+
+
+  // props.getCities()
 
 
 
@@ -32,7 +39,6 @@ export default function Carousel() {
           disableOnInteraction: false,
         }}
         autoHeight={false}
-        navigation= {true}
         pagination={{
           clickable: true,
           
@@ -40,11 +46,11 @@ export default function Carousel() {
         modules={[Autoplay, Pagination, Grid, Navigation]}
         className="mySwiper h-full"
       >
-        {cities.map((city, index) => (
+        {props.cities.map((city, index) => (
           <SwiperSlide
             className="rounded-3xl"
             style={{
-              backgroundImage: `url('${city.img}')`,
+              backgroundImage: `url('${city.caruselImg}')`,
             }}
             key={index}
           >
@@ -55,3 +61,18 @@ export default function Carousel() {
     </div>
   );
 }
+
+// const mapDispatchToProps = {
+//   getCities: citiesActions.getCities
+// }
+
+const mapStateToProps = (state) => {
+  return {
+    cities: state.citiesReducer.cities,
+    auxiliar: state.citiesReducer.cities
+  }
+}
+
+export default connect(mapStateToProps, null)(Carousel);
+
+

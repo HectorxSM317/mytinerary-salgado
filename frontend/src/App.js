@@ -10,12 +10,19 @@ import ScrollToTop from "react-scroll-to-top";
 import { MdCallMerge as MySVG } from "react-icons/md";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
-// ..
+import { connect } from "react-redux";
+import citiesActions from './redux/actions/citiesActions'
+import { useEffect } from "react";
 
 
 
-function App() {
+
+function App(props) {
   AOS.init();
+
+  useEffect(() => {
+    props.getCities()
+  }, [])
   
   
   return (
@@ -35,4 +42,9 @@ function App() {
   );
 }
 
-export default App;
+
+const mapDispatchToProps = {
+  getCities: citiesActions.getCities
+}
+
+export default connect(null, mapDispatchToProps)(App);

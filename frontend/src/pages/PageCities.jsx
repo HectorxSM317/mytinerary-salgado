@@ -2,33 +2,35 @@ import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import HeroCity from "../components/HeroCity";
 import Response from "../components/Response";
-import axios from 'axios'
+import { useSelector, useDispatch } from "react-redux";
+import citiesActions from '../redux/actions/citiesActions'
+
 
 export default function PageCities() {
+
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 200);
   }, []);
-  
-  const [cities, setCities] = useState([]);
-  const [searchInput, setSearchinput] = useState("");
+
+  const dispatch = useDispatch() //Permite traer las acciones
 
   useEffect(() => {
-    axios.get('http://localhost:4000/api/cities')
-    .then(resp => {
-    let citiesFilter = resp.data.response.cities.filter((city) =>
-        city.name.toLowerCase().startsWith(searchInput.toLowerCase().trim())
-        )
-        setCities(citiesFilter)})
-  }, [searchInput]);
+    dispatch(citiesActions.getCities) 
+  })
+
+  const cities = useSelector (store => store.citiesReducer.cities) //useSelector trae estados del componentes
+  console.log(cities)
+
+  const [searchInput, setSearchinput] = useState("");
+
+  let citiesFilter = cities.filter((city) =>
+  city.name.toLowerCase().startsWith(searchInput.toLowerCase().trim())
+  )
 
 
 
-
-// const handleChange = (e) =>{
-//   setSearchinput(e.target.value)
-// }
   
   return (
     <div className="flex flex-col items-center bg-contain bg-[url('https://images.unsplash.com/photo-1638376776402-9a4b75fe21bb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=677&q=80')] ">
@@ -44,8 +46,8 @@ export default function PageCities() {
           />
         </div>
         <div className="pageCities bg-zinc-500 flex justify-center w-full border-8 py-8 -translate-y-12 rounded-3xl flex-wrap items-center my-5 bg-cover bg-[url('https://images.unsplash.com/photo-1638438134319-68477408c19b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1768&q=80')]">
-          {cities.length > 0 ? (
-            cities.map((city) => <Card city={city} key={city._id} />)
+          {citiesFilter.length > 0 ? (
+            citiesFilter?.map((city) => <Card city={city} key={city._id} />)
           ) : (
             <Response />
           )}
@@ -54,3 +56,14 @@ export default function PageCities() {
     </div>
   );
 }
+
+// const mapStateToProps = (state) => {
+//   return {
+//     cities: state.citiesReducer.cities,
+//     auxiliar: state.citiesReducer.cities
+//   }
+// }
+
+// export default connect(mapStateToProps, null)(PageCities);
+
+

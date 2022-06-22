@@ -86,9 +86,7 @@ const citiesControllers = {
         let city
         let error = null
         try {
-            city = await City.findOneAndDelete({
-                _id: id
-            }) 
+            city = await City.findOneAndDelete({_id: id}) 
         } catch (err) {
             error = err
         }

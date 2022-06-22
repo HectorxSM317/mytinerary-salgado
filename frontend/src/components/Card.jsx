@@ -5,7 +5,6 @@ export default function Card({ city }) {
   return (
     <>
       <div
-        data-aos="flip-left"
         data-aos-easing="ease-out-cubic"
         data-aos-duration="1500"
         className="relative group w-full sm:w-10/12 md:w-2/5 h-80 rounded-md border-4 border-neutral-800 overflow-hidden bg-black m-2"

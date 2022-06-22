@@ -1,14 +1,17 @@
 import React from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import CardDetail from '../components/CardDetail'
 
-// import { cities } from '../data'
+import { useSelector, useDispatch } from "react-redux";
+import citiesActions from '../redux/actions/citiesActions'
+
 
 
 export default function Detail() {
-
+  const {id} = useParams();
+  const dispatch = useDispatch()
  
   useEffect(() => {
     setTimeout(() => {
@@ -17,15 +20,17 @@ export default function Detail() {
   }, []);
 
 
-  const [city, setCity] = useState();
-  const {id} = useParams();
-  const newurl = 'http://localhost:4000';
+  // const [city, setCity] = useState();
+  // const newurl = 'http://localhost:4000';
 
 useEffect(() => {
-  axios.get(`${newurl}/api/cities/${id}`)
-  .then(resp => setCity(resp.data.response)
-  )},[id])
+  dispatch(citiesActions.getOneCity(id))
+  // axios.get(`${newurl}/api/cities/${id}`)
+  // .then(resp => setCity(resp.data.response)
+  },[])
 
+  const city = useSelector(store => store.citiesReducer.oneCity)
+  console.log(city)
 
   if(!city){
     return (<div className=" shadow rounded-md p-4 min-h-screen flex items-center justify-center max-w-sm w-full mx-auto">
