@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 const itinerarySchema = new mongoose.Schema({
     itineraryName: {type:String, required:true},
-    name: {type:String, required:true},
     userName: {type:String, required:true},
     userPhoto: {type:String, required:true},
     price: {type:String, required:true},

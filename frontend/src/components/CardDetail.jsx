@@ -1,6 +1,5 @@
 import React from "react";
-import { Link as LinkRouter } from "react-router-dom";
-import Itinerary from "./Itinerary";
+
 
 export default function CardDetail({ city }) {
   console.log(city);
@@ -30,16 +29,7 @@ export default function CardDetail({ city }) {
             <h3 className="text-white text-3xl pl-4">{city.country}</h3>
           </div>
         </div>
-        <div className="flex mt-5">
-          <LinkRouter
-            to="/cities"
-            className="buttonFont text-white text-2xl sm:text-4xl p-2 lg:p-0 text-center  rounded-full w-36 sm:w-40  sm:h-26 border-white border-4"
-          >
-            Back
-          </LinkRouter>
-        </div>
       </div>
-      <Itinerary city />
     </div>
   );
 }

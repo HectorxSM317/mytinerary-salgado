@@ -6,19 +6,13 @@ let apiUrl = 'http://localhost:4000/'
 
 const itineraryAction = {
 
-    getItineraries: () => {
+    getTinFromCity: (id) => {
         return async (dispatch, getState) => {
-            const res = await axios(apiUrl+`api/itineraries`)
+            const res = await axios(apiUrl+`api/itineraries/cities/${id}`)
             console.log(res)
-            dispatch({type: GETITINERARIES, payload: res.data.response.itineraries})
+            dispatch({type: 'GETTINFROMCITY', payload: res.data.response.itineraries})
         }
-    },
-    getOneItineraries: () => {
-        return async (dispatch, getState) => {
-            const res = await axios(apiUrl+`api/itineraries/${id}`)
-            console.log(res)
-            dispatch({type: GETONEITINERARIES, payload: res.data.response.itineraries})
-        }
-    },
-    
+    }
 }
+
+export default itineraryAction

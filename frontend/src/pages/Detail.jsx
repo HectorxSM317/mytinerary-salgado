@@ -3,9 +3,11 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import CardDetail from '../components/CardDetail'
+import {Link as LinkRouter} from 'react-router-dom'
 
 import { useSelector, useDispatch } from "react-redux";
 import citiesActions from '../redux/actions/citiesActions'
+import Itinerary from '../components/Itinerary'
 
 
 
@@ -20,13 +22,9 @@ export default function Detail() {
   }, []);
 
 
-  // const [city, setCity] = useState();
-  // const newurl = 'http://localhost:4000';
-
 useEffect(() => {
   dispatch(citiesActions.getOneCity(id))
-  // axios.get(`${newurl}/api/cities/${id}`)
-  // .then(resp => setCity(resp.data.response)
+  
   },[])
 
   const city = useSelector(store => store.citiesReducer.oneCity)
@@ -52,11 +50,33 @@ useEffect(() => {
   }  
 
   return (
-    <div className="bodyDetail flex flex-grow justify-center bg-gradient-to-br from-black via-zinc-900 to-black py-5">
-        
-        <CardDetail city={city}  />
-      
-       
+    <div className='flex flex-col items-center bg-gradient-to-br from-black via-zinc-900 to-black'>
+
+    <div className="bodyDetail flex justify-center py-5">
+    <CardDetail city={city}  />
+    </div>
+
+    <div className='flex flex-col gap-5 pb-5 w-full items-center'>
+      {city.itinerary?.map(iti => <Itinerary
+        itineraryName={iti.itineraryName}
+        userName={iti.userName}
+        userPhoto={iti.userPhoto}
+        price={iti.price}
+        time={iti.time}
+        tags={iti.tags}
+        likes={iti.likes}
+        city={city}
+        key={iti._id}/>)}
+    </div>
+
+    <div className="flex mt-5">
+          <LinkRouter
+            to="/cities"
+            className="buttonFont text-white text-2xl sm:text-4xl p-2 lg:p-0 text-center  rounded-full w-36 sm:w-40  sm:h-26 border-white border-4"
+          >
+            Back
+          </LinkRouter>
         </div>
+    </div>
   )
 }

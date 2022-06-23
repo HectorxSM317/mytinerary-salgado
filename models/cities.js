@@ -9,6 +9,8 @@ const citySchema = new mongoose.Schema({
     detailImg1: {type:String, required:true},
     detailImg2: {type:String, required:true},
     detailImg3: {type:String, required:true}, 
+    itinerary:[{type: mongoose.Types.ObjectId , ref:'itineraries'}]
+
 })
 
 const City = mongoose.model('cities', citySchema)

@@ -7,7 +7,6 @@ const itinerariesControllers = {
         let error = null
         try {
             itineraries = await Itinerary.find()
-            .populate('cities')
         } catch (err) {
             error = err
         }
@@ -35,18 +34,19 @@ const itinerariesControllers = {
     },
 
     addItinerary: async (req, res) =>{
-        const {name, userName, userPhoto, price, time, tags, likes} = req.body
+        const {itineraryName, userName, userPhoto, price, time, tags, likes, city} = req.body
         let itinerary
         let error = null
         try{
             itinerary = await new Itinerary({
-                name:name,
+                itineraryName:  itineraryName,
                 userName:userName,
                 userPhoto:userPhoto,
                 price:price,
                 time:time,
                 tags:tags,
-                likes:likes
+                likes:likes,
+                city: city
             }).save()
         } catch(err){
             error = err
