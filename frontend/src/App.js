@@ -13,16 +13,23 @@ import 'aos/dist/aos.css'; // You can also use <link> for styles
 import { connect } from "react-redux";
 import citiesActions from './redux/actions/citiesActions'
 import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 
 
 
-function App(props) {
+export default function App() {
   AOS.init();
 
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    props.getCities()
+    // props.getCities()
+    dispatch(citiesActions.getCities())
+
   }, [])
+
+  
   
   
   return (
@@ -43,8 +50,8 @@ function App(props) {
 }
 
 
-const mapDispatchToProps = {
-  getCities: citiesActions.getCities
-}
+// const mapDispatchToProps = {
+//   getCities: citiesActions.getCities
+// }
 
-export default connect(null, mapDispatchToProps)(App);
+// export default connect(null, mapDispatchToProps)(App);

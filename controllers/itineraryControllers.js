@@ -7,6 +7,7 @@ const itinerariesControllers = {
         let error = null
         try {
             itineraries = await Itinerary.find()
+            .populate('cities')
         } catch (err) {
             error = err
         }
@@ -44,8 +45,8 @@ const itinerariesControllers = {
                 userPhoto:userPhoto,
                 price:price,
                 time:time,
-                // tags:tags,
-                // likes:likes
+                tags:tags,
+                likes:likes
             }).save()
         } catch(err){
             error = err

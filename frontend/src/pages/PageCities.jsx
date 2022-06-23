@@ -15,19 +15,26 @@ export default function PageCities() {
   }, []);
 
   const dispatch = useDispatch() //Permite traer las acciones
-
-  useEffect(() => {
-    dispatch(citiesActions.getCities) 
-  })
-
-  const cities = useSelector (store => store.citiesReducer.cities) //useSelector trae estados del componentes
-  console.log(cities)
-
   const [searchInput, setSearchinput] = useState("");
 
-  let citiesFilter = cities.filter((city) =>
-  city.name.toLowerCase().startsWith(searchInput.toLowerCase().trim())
-  )
+  // useEffect(() => {
+  //   dispatch(citiesActions.getCities) 
+    
+  // })
+  // const cities = useSelector (store => store.citiesReducer.cities) //useSelector trae estados del componentes
+  // console.log(cities)
+  useEffect(() => {
+    dispatch(citiesActions.filterCities(searchInput))
+    
+  },[searchInput])
+  
+  const citiesFilter = useSelector ( store => store.citiesReducer.filterCity)
+  console.log(citiesFilter)
+
+
+  // let citiesFilter = cities.filter((city) =>
+  // city.name.toLowerCase().startsWith(searchInput.toLowerCase().trim())
+  // )
 
 
 

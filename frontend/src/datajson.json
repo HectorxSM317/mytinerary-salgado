@@ -1,113 +1,99 @@
-
-  [
+newyork
+[
       {
-        "name": "Madrid",
-        "country": "Spain",
-        "description": "Madrid is the capital of Spain and is also known as Villa y Corte. It is the biggest city in the country and the third largest in the European Union with over 3 million inhabitants",
-        "caruselImg": "https://media.traveler.es/photos/61377f4fccdecaa3de6725f8/master/w_1920%2Cc_limit/23748.jpg",
-        "detailImg1": "https://wallpaperaccess.com/full/1321653.jpg",
-        "detailImg2": "https://wallpaperaccess.com/full/4343080.jpg",
-        "detailImg3": "https://wallpaperaccess.com/full/1150012.jpg"
+        "itineraryName": "Walking through the central park",
+        "userName": "Antonio Banderas",
+        "userPhoto": "foto",
+        "price": "1",
+        "time": "2 hours",
+        "tags": ["walk", "central Park", "Sublime"],
+        "likes": "3"
       },
       {
-        "name": "New York",
-        "country": "United State",
-        "description": "Major destinations include the Empire State Building, Ellis Island, the Statue of Liberty on Liberty Island, Broadway theatre productions, Central Park, Times Square, Coney Island, the Financial District, museums, and sports stadiums.",
-        "caruselImg": "https://media.traveler.es/photos/61377f4f2a0f25a763b1be77/master/w_1920%2Cc_limit/23749.jpg",
-        "detailImg1": "https://wallpaperaccess.com/full/123350.jpg",
-        "detailImg2": "https://wallpaperaccess.com/full/123423.jpg",
-        "detailImg3": "https://wallpaperaccess.com/full/492792.jpg"
-      },
-      {
-        "name": "Rio de Janeiro",
-        "country": "Brazil",
-        "description": "Rio de Janeiro is Brazil's primary tourist attraction and resort. It receives the most visitors per year of any city in South America with 2.82 million international tourists a year.",
-        "caruselImg": "https://media.traveler.es/photos/61377f4ff130191a954c8efe/master/w_1920%2Cc_limit/23750.jpg",
-        "detailImg1": "https://wallpaperaccess.com/full/5815860.jpg",
-        "detailImg2": "https://wallpaperaccess.com/full/2648889.jpg",
-        "detailImg3": "https://wallpaperaccess.com/full/5816060.jpg"
-      },
-      {
-        "name": "Chicago",
-        "country": "United State",
-        "description": "Chicago is one of the top tourist destinations in the United States for a reason. It’s a welcoming city with plenty of world-class attractions that can suit all styles of travel",
-        "caruselImg": "https://media.traveler.es/photos/61377f4fbf63e581e010260e/master/w_1920%2Cc_limit/23752.jpg",
-        "detailImg1": "https://wallpaperaccess.com/full/200022.jpg",
-        "detailImg2": "https://wallpaperaccess.com/full/1137452.jpg",
-        "detailImg3": "https://wallpaperaccess.com/full/1275910.jpg"
-      },
-      {
-        "name": "Venice",
-        "country": "Italy",
-        "description": "There are endless gorgeous views, canals, gondolas, and buildings. This is definitely one of the most important reasons why you should visit Venice. Getting lost in Venice is unlike getting lost anywhere else in the world.",
-        "caruselImg": "https://media.traveler.es/photos/61377f4f06df43bef2d32020/master/w_1920%2Cc_limit/23755.jpg",
-        "detailImg1": "https://wallpaperaccess.com/full/201215.jpg",
-        "detailImg2": "https://wallpaperaccess.com/full/115114.jpg",
-        "detailImg3": "https://wallpaperaccess.com/full/326614.jpg"
-      },
-      {
-        "name": "Lisbon",
-        "country": "Portugal",
-        "description": "Lisbon will appeal to a diverse selection of ages and tourists; it can form a cultural trip, a nightlife extravaganza, a family holiday, a relaxed city-break or even as a base for a beach holiday.",
-        "caruselImg": "https://media.traveler.es/photos/61377f4f6936668f30c400ea/master/w_1920%2Cc_limit/23756.jpg",
-        "detailImg1": "https://wallpaperaccess.com/full/1423589.jpg",
-        "detailImg2": "https://wallpaperaccess.com/full/1423644.jpg",
-        "detailImg3": "https://wallpaperaccess.com/full/1423691.jpg"
-      },
-      {
-        "name": "San Francisco",
-        "country": "United State",
-        "description": "It is home to people of all background and cultures which greatly influence its art, food, fitness, fashion and museums. The city is known for its great shopping districts. From Union Square with big names to outlets from boutiques to vintage clothes and markets, there is literally something for everyone.",
-        "caruselImg": "https://media.traveler.es/photos/61377f4fd4923f67e299014a/master/w_1920%2Cc_limit/23757.jpg",
-        "detailImg1": "https://wallpaperaccess.com/full/102688.jpg",
-        "detailImg2": "https://wallpaperaccess.com/full/148233.jpg",
-        "detailImg3": "https://wallpaperaccess.com/full/1540105.jpg"
-      },
-      {
-        "name": "Marrakech",
-        "country": "Morocco",
-        "description": "Marrakech is also known as the city of luxury, thanks to its famous palaces, 5-star restaurants, luxury spas and hammams and charming riads (traditional houses) in the medina. Amongst others, there is the Mamounia and its enchanting gardens, the luxurious Royal Mansour hammam and the refined cuisine of Namaskar Palace.",
-        "caruselImg": "https://media.traveler.es/photos/61377f5072cad4b2dbd5f3f5/master/w_1920%2Cc_limit/23758.jpg",
-        "detailImg1": "https://wallpaperaccess.com/full/1327504.jpg",
-        "detailImg2": "https://wallpaperaccess.com/full/1327516.jpg",
-        "detailImg3": "https://wallpaperaccess.com/full/344316.jpg"
-      },
-      {
-        "name": "Moscow",
-        "country": "Russia",
-        "description": "Moscow has a great amount of exceptional museums and galleries. The State Tretyakov Gallery, The Pushkin State Museum of Fine Arts, The Multimedia Art Museum, Moscow Museum of Modern Art and lots of other museums.",
-        "caruselImg": "https://media.traveler.es/photos/61377f50ba2a75fcba4bffce/master/w_1920%2Cc_limit/23761.jpg",
-        "detailImg1": "https://wallpaperaccess.com/full/1388822.jpg",
-        "detailImg2": "https://wallpaperaccess.com/full/1388832.jpg",
-        "detailImg3": "https://wallpaperaccess.com/full/513653.jpg"
-      },
-      {
-        "name": "Sydney",
-        "country": "Australia",
-        "description": "Broad sandy beaches and scenic cruises make the Harbour City the perfect holiday destination for travelers looking for fun on the sand and sea.",
-        "caruselImg": "https://wallpaperaccess.com/full/889212.jpg",
-        "detailImg1": "https://wallpaperaccess.com/full/1722072.jpg",
-        "detailImg2": "https://wallpaperaccess.com/full/1564393.jpg",
-        "detailImg3": "https://wallpaperaccess.com/full/2137377.jpg"
-      },
-      {
-        "name": "Florence",
-        "country": "Italy",
-        "description": "Florence is home to one of the most famous art galleries in the world, where many Renaissance masterpieces are housed. Hundreds of thousands of people visit Florence every year just to see the famous pieces by historical artists such as Raphael, Michelangelo, da Vinci, Botticelli, Giotto and Titian, just to name a few.",
-        "caruselImg": "https://wallpaperaccess.com/full/3181624.jpg",
-        "detailImg1": "https://wallpaperaccess.com/full/3181630.jpg",
-        "detailImg2": "https://wallpaperaccess.com/full/1127841.jpg",
-        "detailImg3": "https://wallpaperaccess.com/full/5336970.jpg"
-      },
-      {
-        "name": "Rome",
-        "country": "Italy",
-        "description": "Rome today is one of the most important tourist destinations of the world, due to the incalculable immensity of its archaeological and art treasures, as well as for the charm of its unique traditions, the beauty of its panoramic views, and the majesty of its magnificent 'villas' (parks).",
-        "caruselImg": "https://media.traveler.es/photos/61377f4fccdecaa3de6725fb/master/w_1920%2Cc_limit/23751.jpg",
-        "detailImg1": "https://wallpaperaccess.com/full/115106.jpg",
-        "detailImg2": "https://wallpaperaccess.com/full/389122.jpg",
-        "detailImg3": "https://wallpaperaccess.com/full/129555.jpg"
-
+        "itineraryName": "Statue of Liberty",
+        "userName": "Ana Gabriel",
+        "userPhoto": "foto",
+        "price": "2",
+        "time": "3 hours",
+        "tags": ["wow", "statueOfLiberty", "statue"],
+        "likes": "5"
       }
-    ]
-  
+  ]
+venecia
+  [
+    {
+       "itineraryName": "Venice from the air",
+        "userName": "Alexis Sanchez",
+        "userPhoto": "foto",
+        "price": "4",
+        "time": "2 hours",
+        "tags": ["air", "venice", "fly"],
+        "likes": "8"
+    }
+    {
+       "itineraryName": "Stroll through Venice",
+        "userName": "Pedro Fernandez",
+        "userPhoto": "foto",
+        "price": "3",
+        "time": "2 hours",
+        "tags": ["goodDay", "venice", "walking"],
+        "likes": "3"
+    }
+
+  ]
+rome
+{
+  "itineraryName": "Vatican Tour with Sistine Chapel Early Entry",
+   "userName": "Luis Miguel",
+   "userPhoto": "foto",
+   "price": "4",
+   "time": "2 hours",
+   "tags": ["SistineChapel", "rome", "Bernini"],
+   "likes": "3"
+}
+{
+  "itineraryName": "Highlights & Hidden Gems of Rome",
+   "userName": "Tailor Swift",
+   "userPhoto": "foto",
+   "price": "5",
+   "time": "5 hours",
+   "tags": ["gemsofRome", "rome", "Colosseum"],
+   "likes": "8"
+}
+
+
+
+
+Sydney
+{
+  "itineraryName": "Sydney Harbor",
+   "userName": "",
+   "userPhoto": "foto",
+   "price": "3",
+   "time": "2 hours",
+   "tags": ["Australia", "Sydney", "goodDay"],
+   "likes": "4"
+}
+
+Rio de Janeiro
+{
+  "itineraryName": "Christ the Redeemer",
+   "userName": "Karol G",
+   "userPhoto": "foto",
+   "price": "3",
+   "time": "2 hours",
+   "tags": ["Riodejaneiro", "ChristRedeemer", "walk"],
+   "likes": "4"
+}
+
+Florence
+{
+  "itineraryName": "Florence bike tour",
+   "userName": "Karol G",
+   "userPhoto": "foto",
+   "price": "4",
+   "time": "3 hours",
+   "tags": ["bike", "Florence", "mounthabike"],
+   "likes": "4"
+}
+

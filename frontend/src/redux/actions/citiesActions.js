@@ -19,7 +19,13 @@ const citiesActions = {
         return async (dispatch, getState) =>{
             const res = await axios(apiUrl+`api/cities/${id}`)
             console.log(res)
-            dispatch({type: 'GET_ONE_CITY', payload: res.data.response})
+            dispatch({type: 'GETONECITY', payload: res.data.response})
+        }
+    },
+
+    filterCities: (searchInput) => {
+        return (dispatch, getState) => {
+            dispatch({type:'FILTERCITIES', payload:searchInput})
         }
     }
 
