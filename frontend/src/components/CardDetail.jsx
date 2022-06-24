@@ -6,7 +6,7 @@ export default function CardDetail({ city }) {
 
   return (
     <div className="flex flex-col items-center">
-      <div key={city._id} className="w-11/12 flex flex-col items-center sm:p-4">
+      <div key={city._id} className="w-11/12 flex flex-col items-center sm:p-">
         <div
           className="
       transition 
@@ -25,8 +25,8 @@ export default function CardDetail({ city }) {
             />
           </div>
           <div className="flex flex-col items-center justify-center">
-            <h2 className="text-white text-4xl ">{city.name}</h2>
-            <h3 className="text-white text-3xl pl-4">{city.country}</h3>
+            <h2 className="text-white text-4xl italic">{city.name}</h2>
+            <h3 className="text-white text-3xl pl-4 italic">{city.country}</h3>
           </div>
         </div>
       </div>

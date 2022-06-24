@@ -128,7 +128,7 @@
   }
   .tab-content {
   max-height: 0;
-  transition: all 0.5s;
+  transition: all 1s;
   }
   input:checked + .tab-label .test {
       background-color: #000;

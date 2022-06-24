@@ -8,9 +8,11 @@ const itineraryAction = {
 
     getTinFromCity: (id) => {
         return async (dispatch, getState) => {
-            const res = await axios(apiUrl+`api/itineraries/cities/${id}`)
-            console.log(res)
-            dispatch({type: 'GETTINFROMCITY', payload: res.data.response.itineraries})
+            const res = await axios(apiUrl+`api/cities/${id}/itineraries`)
+            // if(!res.data.success){
+            //     return
+            // }
+            dispatch({type: 'GETTINFROMCITY', payload: res.data.response})
         }
     }
 }

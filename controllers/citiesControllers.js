@@ -6,7 +6,7 @@ const citiesControllers = {
         let cities 
         let error = null
         try {
-            cities = await City.find().populate('itinerary')
+            cities = await City.find()
         } catch (err) { 
             error = err
         }
@@ -22,7 +22,7 @@ const citiesControllers = {
         let city;
         let error = null
         try {
-            city = await City.findOne({_id: id}).populate('itinerary')
+            city = await City.findOne({_id: id})
         } catch (err) {
             // city ? error = err : error = 'not found'
             error = err

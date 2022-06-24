@@ -92,7 +92,24 @@ const itinerariesControllers = {
         })
     },
 
-    
+    getItineratyForCity: async (req,res)=>{
+        const id = req.params.id
+        let itineraryForCity
+        let error
+
+        try{
+            itineraryForCity = await Itinerary.find({city:id}).populate('city')
+            
+        }catch(err){
+            error = err
+        }
+        res.json({
+            response: error? 'ERROR' : itineraryForCity,
+            success: error ? false : true,
+            error: error
+        })
+
+    }
 
 }
 

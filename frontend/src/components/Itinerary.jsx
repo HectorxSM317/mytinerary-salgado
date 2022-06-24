@@ -1,49 +1,45 @@
 import React from 'react'
-import { useSelector, useDispatch } from "react-redux";
-import itineraryAction from '../redux/actions/itineraryAction'
-import {useEffect} from 'react'
 
 
 
-export default function Itinerary({itineraryName, userName, userPhoto, price, time, tags, likes, city}) {
 
+export default function Itinerary({itineraryName, userName, userPhoto, price, time, tags, likes}) {
 
+let emoticon = '💵';
+let emoticonLike = '💖'
 
   return (
-    <div className='flex flex-col w-11/12 my-10'>
-      <div className='flex flex-col  h-96 bg-slate-300 rounded-t-xl'> 
+    <div className='flex flex-col w-11/12 mt-10'>
+      <div className='flex flex-col  h-96 bg-orange-200 rounded-t-xl border-x-4 border-t-4 border-amber-500'> 
 
-          <div className='flex h-1/2 rounded-t-xl w-full'>
+          <div className='flex flex-grow flex-col items-center rounded-t-xl w-full'>
 
-            <div className='flex flex-col absolute translate-y-40 pl-3 items-center justify-center'>
-              <div className=' rounded-full w-20 h-20'>
+            <div className='bg-amber-500 w-3/4 p-2 -translate-y-5 rounded-xl'>
+              <h2 className='font-bold text-lg sm:text-2xl md:text-3xl text-center text-white'>{itineraryName}</h2>
+            </div>
+            <div className='flex flex-col items-center justify-center'>
+              <div className=' rounded-full w-32 h-32 sm:w-40 sm:h-40'>
                 <img className='w-full h-full rounded-full' src={userPhoto} alt={userName} />
               </div>
               <div className='flex justify-center items-center'>
-                <p className='align-middle text-sm font-bold'>{userName}</p>
+                <p className='align-middle text-xl sm:text-2xl md:text-3xl font-bold'>{userName}</p>
               </div>
             </div>
-
-            <div className='absolute -translate-y-6 -translate-x-2 bg-black p-2 rounded-xl'>
-              <h2 className='font-bold text-lg sm:text-3xl text-white'>{itineraryName}</h2>
-            </div>
-            <img className='w-full bg-center' src={city.detailImg2} alt="imgcity" />
 
           </div>
 
-
-          <div className='flex flex-col items-center gap-3 justify-center pt-20'>
+          <div className='flex flex-col items-center gap-3 justify-center mb-10 sm:mb-5'>
             
-            <div className='flex gap-5'>
-              <div className='flex flex-wrap'>
-                
-                <div className='price'>Price: {price}billetes</div>
+            <div className='flex gap-2 sm:gap5 md:gap-9'>
+              <div className='flex w-24'>
+                <p className='text-lg font-bold'>Price:</p>
+                {emoticon.repeat(price)}
               </div>
-              <div className='time'>Time: {time}</div>
-              <div className=''>{likes}likes</div>
+              <div className='text-lg font-bold'>Time: {time}</div>
+              <div className='text-xl'><button>{emoticonLike}{likes}</button></div>
             </div>
 
-            <div className='flex flex-wrap gap-2 '>
+            <div className='flex flex-wrap gap-1 justify-center sm:gap-4 md:gap-10 mb-1'>
               {tags.map(tag => {
                 return <p className='hover:underline' key={tag}>{tag}</p>
               })}
@@ -51,37 +47,27 @@ export default function Itinerary({itineraryName, userName, userPhoto, price, ti
           </div>
       </div>
       
-      <main className="border-4">
+      <main className="border-4 border-amber-500 rounded-b-2xl">
       <section className="shadow row">
           <div className="tabs">
-              <div className="border-b tab">
-                  <div className="border-l-2 border-transparent relative">
+              <div className=" tab">
+                  <div className="relative">
                       <input className="w-full absolute z-10 cursor-pointer opacity-0 h-5 top-6" type="checkbox" id="chck1"/>
                       <header className="flex justify-between items-center p-5 pl-8 pr-8 cursor-pointer select-none tab-label" htmlFor="chck1">
-                          <span className="text-grey-darkest font-thin text-xl">
+                          <span className="text-white font-bold text-center text-xl">
                               Activities
                           </span>
-                          <div className="rounded-full border border-grey w-7 h-7 flex items-center justify-center test">
+                          <div className="rounded-full border-2 border-grey w-9 h-9 flex items-center justify-center test">
       
-                              <svg aria-hidden="true" className="" data-reactid="266" fill="none" height="24" stroke="#606F7B" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                              <svg aria-hidden="true" className="" data-reactid="266" fill="none" height="24" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                                   <polyline points="6 9 12 15 18 9">
                                   </polyline>
                               </svg>
                           </div>
                       </header>
-                      <div className="tab-content">
-                          <div className="pl-8 pr-8 pb-5 text-grey-darkest">
-                              <ul className="pl-4">
-                                  <li className="pb-2">
-                                      consectetur adipiscing elit
-                                  </li>
-                                  <li className="pb-2">
-                                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-                                  </li>
-                                  <li className="pb-2">
-                                      Viverra orci sagittis eu volutpat odio facilisis mauris
-                                  </li>
-                              </ul>
+                      <div className="tab-content w-full">
+                          <div className=" bg-white h-28 rounded-b-2xl">
+                            
                           </div>
                       </div>
                   </div>
