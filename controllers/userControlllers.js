@@ -11,11 +11,12 @@ const userControllers = {
         try {
             const newUser = await User.findOne({email}) //buscamos por mail
             if (!newUser) { //si NO existe el usuario
-                const hashWord = bcryptjs.hashSync(password[0], 10) //hasheo la contraseña
+                const hashWord = bcryptjs.hashSync(password, 10) //hasheo la contraseña
+                // console.log(hashWord)
                 const myNewUser = await new User({firstName, lastName, photoUser, email, country,
                     password: [hashWord],
                     from: [from]})
-                if (from === "SignUpForm") { //si la data viene del formulario
+                if (from === "signUpForm") { //si la data viene del formulario
                     //ACLARACION: ahora el if/else tienen la misma data
                     //pero van a cambiar cuando enviemos correo de verificacion
                     await myNewUser.save()
@@ -23,7 +24,7 @@ const userControllers = {
                         success: true, 
                         from: from,
                         message: `check ${email} and finish your SIGN UP!`}) 
-                    } else { //si la data viene de una red social
+                }else { //si la data viene de una red social
                     await myNewUser.save()
                     res.json({
                         success: true, 
@@ -62,7 +63,7 @@ const userControllers = {
     },
 
     signInUser: async (req, res) => {
-        console.log('REQ BODY')
+        console.log('REQ BODYloged')
         console.log(req.body.logedUser)
         const {email, password, from} = req.body.logedUser
         try {
@@ -79,7 +80,7 @@ const userControllers = {
                 console.log(checkedWord)
                 //filtramos en el array de contraseñas hasheadas si coincide la contraseña 
                 if (from === "signUpForm") { //si fue registrado por nuestro formulario
-                    if (checkedWord.length>0) { //si hay coincidencias
+                    if (checkedWord.length > 0) { //si hay coincidencias
                         const userData = { //este objeto lo utilizaremos cuando veamos TOKEN
                             id: loginUser._id,
                             email: loginUser.email,
@@ -103,8 +104,8 @@ const userControllers = {
                     if (checkedWord.length>0) { //si hay coincidencias
                         const userData = { //este objeto lo utilizaremos cuando veamos TOKEN
                             id: loginUser._id,
-                            mail: loginUser.email,
-                            nameUser: loginUser.nameUser,
+                            email: loginUser.email,
+                            firstName: loginUser.firstName,
                             photoUser: loginUser.photoUser,
                             from: loginUser.from}
                         await loginUser.save()
@@ -112,7 +113,7 @@ const userControllers = {
                             response: userData, 
                             success: true, 
                             from: from, 
-                            message: `welcome back ${userData.nameUser}!`})
+                            message: `welcome back ${userData.firstName}!`})
                     } else { //si no hay coincidencias
                         res.json({
                             success: false, 
