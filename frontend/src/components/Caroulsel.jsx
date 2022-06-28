@@ -16,7 +16,7 @@ import '../styles/App.css'
 
 
 function Carousel(props) {
-  console.log(props)
+  // console.log(props)
 
 
   // props.getCities()

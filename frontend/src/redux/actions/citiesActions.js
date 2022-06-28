@@ -10,7 +10,7 @@ const citiesActions = {
     getCities: () => {
         return async (dispatch, getState) => {
             const res = await axios(apiUrl+`api/cities`)
-            console.log(res)
+            // console.log(res)
             dispatch({type: GETCITIES, payload: res.data.response.cities})
         }
     },

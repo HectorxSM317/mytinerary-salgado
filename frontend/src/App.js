@@ -9,11 +9,12 @@ import Detail from './pages/Detail';
 import ScrollToTop from "react-scroll-to-top";
 import { MdCallMerge as MySVG } from "react-icons/md";
 import AOS from 'aos';
-import 'aos/dist/aos.css'; // You can also use <link> for styles
-import { connect } from "react-redux";
+import 'aos/dist/aos.css';
 import citiesActions from './redux/actions/citiesActions'
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import PageSignUp from './pages/PageSignUp';
+import PageSignIn from './pages/PageSignIn';
 
 
 
@@ -42,6 +43,8 @@ export default function App() {
           <Route path='/cities' element={<PageCities /> } />
           <Route path='/*' element={<PageNotFound /> } />
           <Route path='/detail/:id' element={<Detail />} />
+          <Route path='/singin' element={<PageSignIn />} />
+          <Route path='/singup' element={<PageSignUp />} />
       </Routes>
       <Footer />
     </div>

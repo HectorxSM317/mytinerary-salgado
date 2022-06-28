@@ -29,7 +29,7 @@ export default function PageCities() {
   },[searchInput])
   
   const citiesFilter = useSelector ( store => store.citiesReducer.filterCity)
-  console.log(citiesFilter)
+  // console.log(citiesFilter)
 
 
   // let citiesFilter = cities.filter((city) =>
