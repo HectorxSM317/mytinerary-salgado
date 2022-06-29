@@ -31,7 +31,7 @@ Router.route('/cities/:id/itineraries')
 
 // -----Users----
 Router.route('/register')
-.post(validatorSignUp,signUpUser)
+.post(validatorSignUp, signUpUser)
 
 Router.route('/login')
 .post(signInUser)

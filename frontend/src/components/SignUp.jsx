@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import usersAction from "../redux/actions/usersAction";
 import { Link, Link as LinkRouter } from "react-router-dom";
+// import GoogleSingUp from "./GoogleSingUp";
 const snackbar = require('snackbar');
 
 export default function SingUp({ countries }) {
@@ -23,11 +24,9 @@ export default function SingUp({ countries }) {
     console.log(res)
     
     
-    snackbar.show(alert.message);
+    snackbar.show(res.data.message);
   };
   
-  const alert = useSelector(store => store.userReducer.snackbar)
-  // console.log(alert)
 
   
 
@@ -45,7 +44,7 @@ export default function SingUp({ countries }) {
           </LinkRouter>
         </div>
         <div className="mt-10 flex justify-center">
-            <p>or sing in with</p>
+            <p>or register with</p>
         </div>
         <div className="flex my-5 justify-center w-full">
           <button
@@ -54,12 +53,7 @@ export default function SingUp({ countries }) {
           >
             Facebook
           </button>
-          <button
-            type="button"
-            className="bg-red-500 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
-          >
-            Google
-          </button>
+          {/* <GoogleSingUp /> */}
         </div>
       </div>
 

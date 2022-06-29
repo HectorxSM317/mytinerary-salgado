@@ -1,7 +1,7 @@
 const joi = require('joi')
 
 const validatorSignUp = (req, res, next) => {
-    // console.log(req)
+    console.log(req.body.userData)
     const schema = joi.object({
         firstName: joi.string()
         .min(4)
@@ -32,8 +32,10 @@ const validatorSignUp = (req, res, next) => {
             .required()
         
     })
+
+    // console.log(schema)
     const validation = schema.validate(req.body.dataUser, {abortEarly:false})
-    // console.log(validation.error)
+    // console.log(validation.error.details)
     if(validation.error){
         return res.json({success: false, from: 'validator', message: validation.error.details, test:validation})
     }

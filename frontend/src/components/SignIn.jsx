@@ -2,11 +2,13 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, Link as LinkRouter } from "react-router-dom";
 import usersAction from "../redux/actions/usersAction";
+const snackbar = require('snackbar');
+
 
 export default function SingIn() {
   const dispatch = useDispatch();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     // console.log(event)
     const logedUser = {
@@ -15,7 +17,8 @@ export default function SingIn() {
       from: "signUpForm",
     };
     // console.log(logedUser)
-    dispatch(usersAction.signInUser(logedUser));
+    let res = await dispatch(usersAction.signInUser(logedUser));
+    snackbar.show(res.data.message);
   };
 
   return (
