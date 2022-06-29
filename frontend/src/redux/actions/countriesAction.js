@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-const apiUrl = 'http://country.io/names.json'
 
 const countriesAction = {
 

@@ -1,40 +1,35 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import usersAction from "../redux/actions/usersAction";
 import { Link, Link as LinkRouter } from "react-router-dom";
+const snackbar = require('snackbar');
 
 export default function SingUp({ countries }) {
   const dispatch = useDispatch();
 
-  const handleSubmit = (event) => {
+  async function handleSubmit (event) {
     event.preventDefault();
-    // validarPassword()
-    console.log(event)
     const userData = {
       firstName: event.target[0].value,
       lastName: event.target[1].value,
       email: event.target[2].value,
       password: event.target[3].value,
-      photoUser: event.target[5].value,
-      country: event.target[6].value,
+      photoUser: event.target[4].value,
+      country: event.target[5].value,
       from: "SignUpForm",
     };
-    console.log(userData);
-    dispatch(usersAction.singUpUser(userData));
-
-    // if(!validarPassword()){
-    //     return
-    // }
-    // if(!name){
-    //     setNameError('name no puede estar vacio')
-
-    // }
-    // const res = await axios.post('http://localhost:4000/api/users', {name, lastName, mail, country, userPhoto})
+   
+    let res = await dispatch(usersAction.singUpUser(userData));
+    console.log(res)
+    
+    
+    snackbar.show(alert.message);
   };
+  
+  const alert = useSelector(store => store.userReducer.snackbar)
+  // console.log(alert)
 
-  // const validarPassword = () => {
-  //     return  password === passwordConfirm
-  // }
+  
 
   return (
     <div className="w-11/12 flex flex-col md:flex-row items-center my-10">
@@ -110,14 +105,6 @@ export default function SingUp({ countries }) {
           </div>
           <div className="mt-2">
             <input
-              type="password"
-              name="pass"
-              placeholder="password confirm"
-              className="mt-1 block w-full bg-amber-500/25 border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 p-2"
-            />
-          </div>
-          <div className="mt-2">
-            <input
               type="text"
               name="img"
               placeholder="Image"
@@ -131,6 +118,7 @@ export default function SingUp({ countries }) {
               placeholder="Select Country"
               className="mt-1 block w-full bg-amber-500/25 border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 p-2"
             >
+              <option >country</option>
               {countries?.map((country) => (
                 <option className="w-full" key={country.name} value={country.name}>
                   {country.name}

@@ -76,11 +76,18 @@ const userControllers = {
                     message: `${email} has no account, please SIGN UP!`})
             } else { //si existe el usuario
                 let checkedWord = loginUser.password.filter(pass => bcryptjs.compareSync(password, pass))
-                console.log(password)
-                console.log(checkedWord)
+                if(checkedWord.length === 0){
+                    res.json({
+                        success: false, 
+                        from: from,  
+                        message: `verify your mail or password!`})
+                        return
+                }
+                // console.log(password)
+                // console.log(checkedWord)
                 //filtramos en el array de contraseñas hasheadas si coincide la contraseña 
                 if (from === "signUpForm") { //si fue registrado por nuestro formulario
-                    if (checkedWord.length > 0) { //si hay coincidencias
+                  //si hay coincidencias
                         const userData = { //este objeto lo utilizaremos cuando veamos TOKEN
                             id: loginUser._id,
                             email: loginUser.email,
@@ -92,16 +99,11 @@ const userControllers = {
                             response: userData, 
                             success: true, 
                             from: from, 
-                            message: `welcome back ${userData.firstName}!`})
-                    } else { //si no hay coincidencias
-                        res.json({
-                            success: false, 
-                            from: from,  
-                            message: `verify your password!`})
-                    }
+                            message: `welcome back with form ${userData.firstName}!`})
+                    
                 } else { //si fue registrado por redes sociales
                     //ACLARACION: por ahora es igual al anterior
-                    if (checkedWord.length>0) { //si hay coincidencias
+                      //si hay coincidencias
                         const userData = { //este objeto lo utilizaremos cuando veamos TOKEN
                             id: loginUser._id,
                             email: loginUser.email,
@@ -113,13 +115,8 @@ const userControllers = {
                             response: userData, 
                             success: true, 
                             from: from, 
-                            message: `welcome back ${userData.firstName}!`})
-                    } else { //si no hay coincidencias
-                        res.json({
-                            success: false, 
-                            from: from,  
-                            message: `verify your mail or password!`})
-                    }
+                            message: `welcome back with otra wea ${userData.firstName}!`})
+                    
                 }
             }
         } catch (error) {

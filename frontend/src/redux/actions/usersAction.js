@@ -9,7 +9,15 @@ const usersAction = {
         
         return async (dispatch, getState) => {
             const res = await axios.post(apiUrl+'api/register', {userData})
-            // console.log(res)
+            console.log(res)
+            dispatch({
+                type: "MESSAGE",
+                payload: {
+                    view: true,
+                    message: res.data.message,
+                    success: res.data.success,
+                },
+            });
 
         }
     },
@@ -20,7 +28,7 @@ const usersAction = {
             const res = await axios.post(apiUrl+'api/login', {logedUser})
             console.log(res)
             if(res.data.success) {
-                localStorage.setItem('token',res.data.response.token)
+                // localStorage.setItem('token',res.data.response.token)
                 dispatch({
                     type: 'USER',
                     payload: res.data.response.userData
