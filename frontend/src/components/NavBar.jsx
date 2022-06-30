@@ -3,6 +3,9 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import {Link, Link as LinkRouter} from 'react-router-dom'
 import { RiAccountPinCircleLine } from "react-icons/ri";
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import usersAction from '../redux/actions/usersAction';
 
 const navigation = [
   { name: 'Home', to:'/', current: false },
@@ -15,6 +18,14 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const dispatch = useDispatch()
+
+let porAhora= true
+let otroAhora=false
+
+  let user = useSelector(store => store.userReducer.user)
+
+
   return (
     <Disclosure as="nav" className="bg-black">
       {({ open }) => (
@@ -60,7 +71,7 @@ export default function Navbar() {
                   <div>
                     <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                       <span className="sr-only">Open user menu</span>
-                      <RiAccountPinCircleLine style={{width:'30px', height:'30px', color: 'white'}}/>
+                      {!user ? <RiAccountPinCircleLine style={{width:'30px', height:'30px', color: 'white'}}/>: <img className='w-8 h-8 rounded-full object-fit' src={user.photoUser} alt='fotoUser'/>}
                     </Menu.Button>
                   </div>
                   <Transition
@@ -72,28 +83,54 @@ export default function Navbar() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
+                    {!user ? 
                     <Menu.Items className="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
                           <LinkRouter
-                            to={'/singin'}
+                            to={'/signin'}
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
-                            Sing In
+                            Sign In
                           </LinkRouter>
                         )}
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
                           <LinkRouter
-                            to={'/singup'}
+                            to={'/signup'}
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
-                            Sing Up
+                            Sign Up
                           </LinkRouter>
                         )}
                       </Menu.Item>
                     </Menu.Items>
+                    :
+                    <Menu.Items className="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <Menu.Item>
+                        {({ active }) => (
+                          <LinkRouter
+                            to={'/signin'}
+                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                          >
+                            Settings
+                          </LinkRouter>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <LinkRouter
+                            onClick={() => dispatch(usersAction.logoutUser())}
+                            to={'/'}
+                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                          >
+                            Sign Out
+                          </LinkRouter>
+                        )}
+                      </Menu.Item>
+                    </Menu.Items>
+                    }
                   </Transition>
                 </Menu>
               </div>

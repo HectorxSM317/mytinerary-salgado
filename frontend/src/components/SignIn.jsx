@@ -2,11 +2,14 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, Link as LinkRouter } from "react-router-dom";
 import usersAction from "../redux/actions/usersAction";
+import { useNavigate } from "react-router-dom";
+import GoogleSignUp from "./GoogleSignUp";
 const snackbar = require('snackbar');
 
 
-export default function SingIn() {
+export default function SignIn() {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -18,6 +21,17 @@ export default function SingIn() {
     };
     // console.log(logedUser)
     let res = await dispatch(usersAction.signInUser(logedUser));
+    console.log(res)
+    if(res.data.success){
+      try{
+        navigate('/', {replace: true})
+      }catch(error){
+        console.log(error)
+      }
+    }else{
+      console.log(res)
+      return logedUser
+    }
     snackbar.show(res.data.message);
   };
 
@@ -74,19 +88,14 @@ export default function SingIn() {
             Facebook
           </button>
 
-          <button
-            type="button"
-            className="bg-red-500 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
-          >
-            Google
-          </button>
+          <GoogleSignUp action='login' />
         </div>
 
         <div className="mt-7">
           <div className="flex justify-center items-center">
             <label className="mr-2">Dont have a account?</label>
             <LinkRouter
-              to={"/singup"}
+              to={"/signup"}
               href="#"
               className=" text-blue-500 transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
             >

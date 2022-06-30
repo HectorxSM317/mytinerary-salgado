@@ -1,15 +1,19 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import usersAction from "../redux/actions/usersAction";
 import { Link, Link as LinkRouter } from "react-router-dom";
-// import GoogleSingUp from "./GoogleSingUp";
+import GoogleSignUp from "./GoogleSignUp";
+import {useNavigate} from 'react-router-dom'
 const snackbar = require('snackbar');
 
 export default function SingUp({ countries }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   async function handleSubmit (event) {
     event.preventDefault();
+    
+
     const userData = {
       firstName: event.target[0].value,
       lastName: event.target[1].value,
@@ -20,11 +24,25 @@ export default function SingUp({ countries }) {
       from: "SignUpForm",
     };
    
-    let res = await dispatch(usersAction.singUpUser(userData));
-    console.log(res)
+    let res = await dispatch(usersAction.signUpUser(userData));
+    console.log(res.data.message)
+    if(res.data.success){
+      try{
+        navigate('/', {replace: true})
+      }catch(error){
+        console.log(error)
+      }
+    }else{
+      res.data.message.map(m => {
+        console.log(m.message)
+    return snackbar.show(m.message);
     
+      })
+      return userData
+    }
     
     snackbar.show(res.data.message);
+    
   };
   
 
@@ -36,7 +54,7 @@ export default function SingUp({ countries }) {
         <div className="flex flex-col my-3 justify-center items-center">
           <p className="my-5 text-2xl">Already have an account?</p>
           <LinkRouter
-            to={"/singin"}
+            to={"/signin"}
             href="#"
             className=" bg-amber-500 border-none px-4 py-2 rounded-xl cursor-pointer text-white text-xl shadow-xl hover:shadow-inner transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
           >
@@ -53,7 +71,7 @@ export default function SingUp({ countries }) {
           >
             Facebook
           </button>
-          {/* <GoogleSingUp /> */}
+          <GoogleSignUp action='signUp'/>
         </div>
       </div>
 

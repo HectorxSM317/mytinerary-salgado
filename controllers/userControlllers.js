@@ -1,5 +1,6 @@
 const User = require('../models/user')
 const bcryptjs = require('bcryptjs')
+const crypto = require('crypto')
 
 const userControllers = {
 
@@ -17,28 +18,25 @@ const userControllers = {
         } = req.body.userData
 
         try {
-            const newUser = await User.findOne({
-                email
-            }) //buscamos por mail
+            const newUser = await User.findOne({email}) //buscamos por mail
+            const hashWord = bcryptjs.hashSync(password, 10) //hasheo la contraseña
+            const verification = false //por default
+            const uniqueString = crypto.randomBytes(15).toString('hex') //metodos de crypto
             if (!newUser) { //si NO existe el usuario
-                const hashWord = bcryptjs.hashSync(password, 10) //hasheo la contraseña
-                // const verification = false //por default
-                // const uniqueString = crypto.randomBytes(15).toString('hex') //metodos de crypto
-                // console.log(hashWord)
                 const myNewUser = await new User({
                     firstName,
                     lastName,
                     photoUser,
                     email,
                     country,
+                    verification,
+                    uniqueString,
                     password: [hashWord],
                     from: [from]
                 })
-                if (from === "signUpForm") { //si la data viene del formulario
-                    //ACLARACION: ahora el if/else tienen la misma data
-                    //pero van a cambiar cuando enviemos correo de verificacion
+                if (from === "signUpForm") { 
                     await myNewUser.save()
-                    // await sendEmail(email, uniquestring)
+                    await sendEmail(email, uniqueString)
                     res.json({
                         success: true,
                         from: from,
@@ -69,7 +67,7 @@ const userControllers = {
                     const hashWord = bcryptjs.hashSync(password, 10)
                     newUser.password.push(hashWord)
                     newUser.from.push(from)
-                    // newUser.varification = true
+                    newUser.varification = true
                     await newUser.save()
                     res.json({
                         success: true,
@@ -152,7 +150,7 @@ const userControllers = {
                         response: userData,
                         success: true,
                         from: from,
-                        message: `welcome back  ${userData.firstName}!`
+                        message: `welcome back ${userData.firstName}!`
                     })
 
                 }

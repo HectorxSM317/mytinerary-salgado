@@ -43,8 +43,8 @@ export default function App() {
           <Route path='/cities' element={<PageCities /> } />
           <Route path='/*' element={<PageNotFound /> } />
           <Route path='/detail/:id' element={<Detail />} />
-          <Route path='/singin' element={<PageSignIn />} />
-          <Route path='/singup' element={<PageSignUp />} />
+          <Route path='/signin' element={<PageSignIn />} />
+          <Route path='/signup' element={<PageSignUp />} />
       </Routes>
       <Footer />
     </div>

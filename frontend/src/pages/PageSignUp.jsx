@@ -5,6 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import countriesAction from '../redux/actions/countriesAction'
 
 export default function PageSingUp() {
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 200);
+  }, []);
+  
 
     const dispatch = useDispatch()
 

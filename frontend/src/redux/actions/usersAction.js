@@ -5,7 +5,7 @@ let apiUrl = 'http://localhost:4000/'
 
 const usersAction = {
 
-    singUpUser: (userData) => {
+    signUpUser: (userData) => {
         
         return async (dispatch, getState) => {
             const res = await axios.post(apiUrl+'api/register', {userData})
@@ -24,13 +24,27 @@ const usersAction = {
     },
 
     signInUser: (logedUser) => {
-        // console.log(logedUser)
         return async (dispatch, getState) => {
             const res = await axios.post(apiUrl+'api/login', {logedUser})
             console.log(res)
+            dispatch({
+                type: "USER",
+                payload: res.data.response,
+            });
             return res
         }
-    }
+    },
+    
+    logoutUser: () => {
+        return async (dispatch, getState) => {
+            dispatch({
+                type: "USER",
+                payload: null
+            });
+        }
+    },
+
+    
 
 }
 

@@ -8,7 +8,9 @@ const userSchema = new mongoose.Schema({
     email: {type: String, required:true},
     photoUser: {type: String, required:true},
     country: {type: String, required:true},
-    from: {type: Array, required:true}
+    from: {type: Array, required:true},
+    uniqueString: {type: String, required:true},
+    verification: {type: Boolean, required:true}
 
 })
 

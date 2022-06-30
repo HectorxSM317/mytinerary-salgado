@@ -9,8 +9,8 @@ import "../styles/App.css";
 const navigation = [
   { name: "Home", to: "/", current: false },
   { name: "Cities", to: "/cities", current: false },
-  { name: "Sing Up", to: "a", current: false },
-  { name: "Sing In", to: "a", current: false },
+  { name: "Sign Up", to: "/signup", current: false },
+  { name: "Sign In", to: "/signin", current: false },
 ];
 
 function classNames(...classes) {
