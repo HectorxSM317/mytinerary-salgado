@@ -3,7 +3,7 @@ const validatorSignUp = require('../config/validatorSignUp')
 
 const {getCities, getOneCity, addCity, modifyCity, removeCity } = require('../controllers/citiesControllers');
 const {getItinerary, getOneItinerary, addItinerary, modifyItinerary, removeItinerary, getItineratyForCity} = require('../controllers/itineraryControllers');
-const { signUpUser, signInUser } = require('../controllers/userControlllers')
+const { signUpUser, signInUser, verifyEmail } = require('../controllers/userControlllers')
 
 
 // ---Cities---
@@ -35,6 +35,10 @@ Router.route('/register')
 
 Router.route('/login')
 .post(signInUser)
+
+Router.route('/verify/:string')
+.get(verifyEmail)
+
 
 
 

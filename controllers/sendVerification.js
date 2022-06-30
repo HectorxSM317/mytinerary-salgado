@@ -27,7 +27,7 @@ const sendVerification = async (email, string) => {
             accessToken: accessToken
         },
         tls: {
-            rejectUnauthorized: false
+            rejectUnauthorized: false //para evitar que bloquee el antivirus
         }
     })
 

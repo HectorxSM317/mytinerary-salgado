@@ -30,9 +30,9 @@ export default function SignIn() {
       }
     }else{
       console.log(res)
+      snackbar.show(res.data.message);
       return logedUser
     }
-    snackbar.show(res.data.message);
   };
 
   return (

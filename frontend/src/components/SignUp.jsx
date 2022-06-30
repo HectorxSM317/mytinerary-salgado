@@ -21,7 +21,7 @@ export default function SingUp({ countries }) {
       password: event.target[3].value,
       photoUser: event.target[4].value,
       country: event.target[5].value,
-      from: "SignUpForm",
+      from: "signUpForm",
     };
    
     let res = await dispatch(usersAction.signUpUser(userData));
@@ -34,11 +34,10 @@ export default function SingUp({ countries }) {
       }
     }else{
       res.data.message.map(m => {
-        console.log(m.message)
+        // console.log(m.message)
     return snackbar.show(m.message);
-    
       })
-      return userData
+      
     }
     
     snackbar.show(res.data.message);

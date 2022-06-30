@@ -1,6 +1,7 @@
 const User = require('../models/user')
 const bcryptjs = require('bcryptjs')
 const crypto = require('crypto')
+const sendVerification = require('./sendVerification')
 
 const userControllers = {
 
@@ -23,27 +24,21 @@ const userControllers = {
             const verification = false //por default
             const uniqueString = crypto.randomBytes(15).toString('hex') //metodos de crypto
             if (!newUser) { //si NO existe el usuario
-                const myNewUser = await new User({
-                    firstName,
-                    lastName,
-                    photoUser,
-                    email,
-                    country,
-                    verification,
-                    uniqueString,
+                const myNewUser = await new User({firstName, lastName, photoUser, email, country, verification,
+                    uniqueString: uniqueString,
                     password: [hashWord],
                     from: [from]
                 })
                 if (from === "signUpForm") { 
                     await myNewUser.save()
-                    await sendEmail(email, uniqueString)
+                    await sendVerification(email, uniqueString)
                     res.json({
                         success: true,
                         from: from,
                         message: `check ${email} and finish your SIGN UP!`
                     })
                 } else { //si la data viene de una red social
-                    // newUser.verification = true
+                    newUser.verification = true
                     await myNewUser.save()
                     res.json({
                         success: true,
@@ -67,7 +62,7 @@ const userControllers = {
                     const hashWord = bcryptjs.hashSync(password, 10)
                     newUser.password.push(hashWord)
                     newUser.from.push(from)
-                    newUser.varification = true
+                    newUser.verification = true
                     await newUser.save()
                     res.json({
                         success: true,
@@ -115,25 +110,30 @@ const userControllers = {
                     })
                     return
                 }
-                // console.log(password)
-                // console.log(checkedWord)
-                //filtramos en el array de contraseñas hasheadas si coincide la contraseña 
                 if (from === "signUpForm") { //si fue registrado por nuestro formulario
-                    //si hay coincidencias
-                    const userData = { //este objeto lo utilizaremos cuando veamos TOKEN
-                        id: loginUser._id,
-                        email: loginUser.email,
-                        firstName: loginUser.firstName,
-                        photoUser: loginUser.photoUser,
-                        from: loginUser.from
+                    if(loginUser.verification){
+                        console.log(loginUser.verification)
+                        const userData = { //este objeto lo utilizaremos cuando veamos TOKEN
+                            id: loginUser._id,
+                            email: loginUser.email,
+                            firstName: loginUser.firstName,
+                            photoUser: loginUser.photoUser,
+                            from: loginUser.from
+                        }
+                        await loginUser.save()
+                        res.json({
+                            response: userData,
+                            success: true,
+                            from: from,
+                            message: `Welcome ${userData.firstName}!`
+                        })
+                    }else{
+                        res.json({
+                            success: false,
+                            from: from,
+                            message: `Please validate your email`
+                        })
                     }
-                    await loginUser.save()
-                    res.json({
-                        response: userData,
-                        success: true,
-                        from: from,
-                        message: `welcome back with form ${userData.firstName}!`
-                    })
 
                 } else { //si fue registrado por redes sociales
                     //ACLARACION: por ahora es igual al anterior
@@ -150,7 +150,7 @@ const userControllers = {
                         response: userData,
                         success: true,
                         from: from,
-                        message: `welcome back ${userData.firstName}!`
+                        message: `Welcome ${userData.firstName}!`
                     })
 
                 }
@@ -163,7 +163,21 @@ const userControllers = {
                 message: 'ERROR'
             })
         }
+    },
+
+    verifyEmail: async(req, res) => {
+        const {string} = req.params
+        const user = await User.findOne({uniqueString: string})
+        if(user){
+            user.verification = true
+            await user.save()
+            res.redirect('http://localhost:3000/')
+        }else{res.json({
+            success: false,
+            message: 'email has not been confirmed yet'})
+        }
     }
+
 }
 
 module.exports = userControllers;
