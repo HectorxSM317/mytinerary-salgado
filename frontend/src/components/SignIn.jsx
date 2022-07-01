@@ -4,7 +4,8 @@ import { Link, Link as LinkRouter } from "react-router-dom";
 import usersAction from "../redux/actions/usersAction";
 import { useNavigate } from "react-router-dom";
 import GoogleSignUp from "./GoogleSignUp";
-const snackbar = require('snackbar');
+import toast from "react-hot-toast";
+
 
 
 export default function SignIn() {
@@ -28,9 +29,10 @@ export default function SignIn() {
       }catch(error){
         console.log(error)
       }
+      toast.success(res.data.message)
     }else{
       console.log(res)
-      snackbar.show(res.data.message);
+      toast.error(res.data.message)
       return logedUser
     }
   };

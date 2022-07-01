@@ -4,7 +4,8 @@ import usersAction from "../redux/actions/usersAction";
 import { Link, Link as LinkRouter } from "react-router-dom";
 import GoogleSignUp from "./GoogleSignUp";
 import {useNavigate} from 'react-router-dom'
-const snackbar = require('snackbar');
+// import {ShowToast} from "./ShowToast";
+import toast from "react-hot-toast";
 
 export default function SingUp({ countries }) {
   const dispatch = useDispatch();
@@ -25,22 +26,25 @@ export default function SingUp({ countries }) {
     };
    
     let res = await dispatch(usersAction.signUpUser(userData));
-    console.log(res.data.message)
+    console.log(res.data)
     if(res.data.success){
+      toast.success(res.data.message)
       try{
         navigate('/', {replace: true})
       }catch(error){
         console.log(error)
       }
     }else{
-      res.data.message.map(m => {
-        // console.log(m.message)
-    return snackbar.show(m.message);
-      })
-      
+      res.data.message.map(msg =>{
+       return toast.error(msg.message)
+    })
     }
-    
-    snackbar.show(res.data.message);
+
+     
+      
+  
+
+
     
   };
   

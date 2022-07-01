@@ -2,6 +2,7 @@ const User = require('../models/user')
 const bcryptjs = require('bcryptjs')
 const crypto = require('crypto')
 const sendVerification = require('./sendVerification')
+const jwt = require('jsonwebtoken')
 
 const userControllers = {
 
@@ -29,6 +30,7 @@ const userControllers = {
                     password: [hashWord],
                     from: [from]
                 })
+                console.log(myNewUser)
                 if (from === "signUpForm") { 
                     await myNewUser.save()
                     await sendVerification(email, uniqueString)
@@ -38,7 +40,7 @@ const userControllers = {
                         message: `check ${email} and finish your SIGN UP!`
                     })
                 } else { //si la data viene de una red social
-                    newUser.verification = true
+                    myNewUser.verification = true
                     await myNewUser.save()
                     res.json({
                         success: true,
@@ -121,8 +123,9 @@ const userControllers = {
                             from: loginUser.from
                         }
                         await loginUser.save()
+                        const token = jwt.sign({...userData}, process.env.SECRET_KEY, {expiresIn: 60* 60*24})
                         res.json({
-                            response: userData,
+                            response: {userData, token},
                             success: true,
                             from: from,
                             message: `Welcome ${userData.firstName}!`
@@ -146,8 +149,9 @@ const userControllers = {
                         from: loginUser.from
                     }
                     await loginUser.save()
+                    const token = jwt.sign({...userData}, process.env.SECRET_KEY, {expiresIn: 60* 60*24})
                     res.json({
-                        response: userData,
+                        response: {userData, token},
                         success: true,
                         from: from,
                         message: `Welcome ${userData.firstName}!`
@@ -175,6 +179,24 @@ const userControllers = {
         }else{res.json({
             success: false,
             message: 'email has not been confirmed yet'})
+        }
+    },
+
+    checkToken: (req, res) => {
+        console.log(req)
+        if(req.user){
+            res.json({
+                success: true,
+                response: {
+                    id:req.user.id,
+                    firstName:req.user.firstName,
+                    email: req.user.email,
+                    from: 'token'},
+                message: 'Bienvenido nuevamente '+req.user.firstName})
+        }else{
+            res.json({
+                success: false,
+                message: 'Por Favor realiza SingIn nuevamente'})
         }
     }
 

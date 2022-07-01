@@ -15,14 +15,24 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import PageSignUp from './pages/PageSignUp';
 import PageSignIn from './pages/PageSignIn';
+import { Toaster } from 'react-hot-toast';
+import usersAction from "../src/redux/actions/usersAction"
+
 
 
 
 
 export default function App() {
+  const dispatch = useDispatch()
   AOS.init();
 
-  const dispatch = useDispatch()
+  useEffect(() => {
+    if(localStorage.getItem('token') !== null){
+      const token = localStorage.getItem('token')
+      console.log(token)
+      dispatch(usersAction.checkToken(token))
+    }
+  },)
 
   useEffect(() => {
     // props.getCities()
@@ -36,6 +46,9 @@ export default function App() {
   return (
     <div className="App">
       <Navbar />
+      <Toaster 
+      position="top-center"
+      reverseOrder={true} />
       <ScrollToTop smooth className='toTop animate-bounce' top={500} component={<MySVG width={20} />}/>
       <Routes>
           <Route path="/" element={<Index /> } />

@@ -3,7 +3,7 @@ import jwt_decode from "jwt-decode";
 import { useDispatch } from "react-redux";
 import usersAction from "../redux/actions/usersAction";
 import {useNavigate} from 'react-router-dom'
-const snackbar = require('snackbar');
+import toast from "react-hot-toast";
 
 export default function GoogleSignUp({ action }) {
   const dispatch = useDispatch();
@@ -14,7 +14,6 @@ export default function GoogleSignUp({ action }) {
 
   async function handleCallbackResponse(response) {
     let userObject = jwt_decode(response.credential);
-    // console.log(userObject);
     let res = await dispatch(
         fn({
         firstName: userObject.given_name,
@@ -26,23 +25,17 @@ export default function GoogleSignUp({ action }) {
         from: "google",
       })
     );
-// console.log(res)
     if (res.data.success) {
-        // let loged = await dispatch(usersAction.signInUser({
-        //     email: userObject.email,
-        //     password: userObject.sub,
-        //     from: "google",
-        // }))
-        // snackbar.show(loged.data.message);
-
       try {
         navigate("/", { replace: true });
       } catch (error) {
         console.log(error);
       }
-    } 
+      toast.success(res.data.message)
+    } else {
+      toast.error(res.data.message)
+    }
 
-    snackbar.show(res.data.message);
   }
 
   useEffect(() => {
