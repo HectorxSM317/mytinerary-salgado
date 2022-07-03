@@ -14,7 +14,7 @@ useEffect(() =>{
 },[])
 
 const itineraries = useSelector(store => store.itineraryReducer.itineraries)
-console.log(itineraries)
+
 
   return (
     <div className="flex flex-col gap-5 pb-5 w-full items-center">

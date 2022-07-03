@@ -17,9 +17,8 @@ import PageSignUp from './pages/PageSignUp';
 import PageSignIn from './pages/PageSignIn';
 import { Toaster } from 'react-hot-toast';
 import usersAction from "../src/redux/actions/usersAction"
-
-
-
+import { useSelector } from 'react-redux';
+import Settings from './pages/Settings';
 
 
 export default function App() {
@@ -29,16 +28,17 @@ export default function App() {
   useEffect(() => {
     if(localStorage.getItem('token') !== null){
       const token = localStorage.getItem('token')
-      console.log(token)
       dispatch(usersAction.checkToken(token))
     }
-  },)
+  }, [])
 
   useEffect(() => {
     // props.getCities()
     dispatch(citiesActions.getCities())
 
   }, [])
+
+  const user = useSelector(store => store.userReducer.user)
 
   
   
@@ -56,18 +56,13 @@ export default function App() {
           <Route path='/cities' element={<PageCities /> } />
           <Route path='/*' element={<PageNotFound /> } />
           <Route path='/detail/:id' element={<Detail />} />
-          <Route path='/signin' element={<PageSignIn />} />
-          <Route path='/signup' element={<PageSignUp />} />
+          {!user && <Route path='/signin' element={<PageSignIn />} />}
+          {!user && <Route path='/signup' element={<PageSignUp />} />}
+          {user && <Route path='/settings' element={<Settings />} />}
+          
       </Routes>
       <Footer />
     </div>
     
   );
 }
-
-
-// const mapDispatchToProps = {
-//   getCities: citiesActions.getCities
-// }
-
-// export default connect(null, mapDispatchToProps)(App);

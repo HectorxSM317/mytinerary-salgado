@@ -6,6 +6,8 @@ import { RiAccountPinCircleLine } from "react-icons/ri";
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import usersAction from '../redux/actions/usersAction';
+import toast from "react-hot-toast";
+
 
 const navigation = [
   { name: 'Home', to:'/', current: false },
@@ -20,10 +22,8 @@ function classNames(...classes) {
 export default function Navbar() {
   const dispatch = useDispatch()
 
-let porAhora= true
-let otroAhora=false
-
   let user = useSelector(store => store.userReducer.user)
+  console.log(user)
 
 
   return (
@@ -71,7 +71,13 @@ let otroAhora=false
                   <div>
                     <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                       <span className="sr-only">Open user menu</span>
-                      {!user ? <RiAccountPinCircleLine style={{width:'30px', height:'30px', color: 'white'}}/>: <img className='w-8 h-8 rounded-full object-fit' src={user.photoUser} alt='fotoUser'/>}
+                      {!user ?
+                       <RiAccountPinCircleLine style={{width:'30px', height:'30px', color: 'white'}}/>
+                       :
+                        <div className='flex items-center gap-2 pl-2'>
+                          <p className='text-white'>{user.firstName}</p>
+                          <img className='w-8 h-8 rounded-full object-fit' src={user.photoUser} alt='user'/>
+                          </div>}
                     </Menu.Button>
                   </div>
                   <Transition
@@ -111,7 +117,7 @@ let otroAhora=false
                       <Menu.Item>
                         {({ active }) => (
                           <LinkRouter
-                            to={'/signin'}
+                            to={'/settings'}
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Settings
@@ -121,7 +127,10 @@ let otroAhora=false
                       <Menu.Item>
                         {({ active }) => (
                           <LinkRouter
-                            onClick={() => dispatch(usersAction.logoutUser())}
+                            onClick={() => {dispatch(usersAction.logoutUser())
+                              toast('😢')
+                            }
+                          }
                             to={'/'}
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >

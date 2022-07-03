@@ -38,7 +38,7 @@ const citiesControllers = {
 
     
     addCity: async (req, res) => {
-        const {name, country, description, caruselImg, detailImg1, detailImg2, detailImg3} = req.body 
+        const {name, country, description, caruselImg, detailImg1} = req.body 
         console.log(req.body)
         let city;
         let error = null;
@@ -49,8 +49,6 @@ const citiesControllers = {
                 description: description,
                 caruselImg: caruselImg,
                 detailImg1: detailImg1,
-                detailImg2: detailImg2,
-                detailImg3: detailImg3,
             }).save()
         } catch (err) {
             error = err

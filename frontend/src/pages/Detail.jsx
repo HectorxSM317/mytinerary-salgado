@@ -26,7 +26,7 @@ useEffect(() => {
   },[])
 
   const city = useSelector(store => store.citiesReducer.oneCity)
-  console.log(city)
+
 
   if(!city){
     return (<div className=" shadow rounded-md p-4 min-h-screen flex items-center justify-center max-w-sm w-full mx-auto">

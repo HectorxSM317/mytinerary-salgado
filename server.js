@@ -1,12 +1,12 @@
+require('dotenv').config() 
+require('./config/database')
 const cors = require('cors')
 const express = require('express') 
-const Router = require('./routes/routes') 
 const app = express()
 const PORT = 4000
 const passport = require('passport')
+const Router = require('./routes/routes') 
 
-require('dotenv').config() 
-require('./config/database')
 
 //Middlewares
 app.use(cors()) 

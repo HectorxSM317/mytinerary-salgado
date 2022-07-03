@@ -15,7 +15,7 @@ const validatorSignUp = (req, res, next) => {
             .required()
             .messages({'string.email': 'Email: incorrect format'}),
         password: joi.string()
-            .min(2)
+            .min(8)
             .max(30)
             .pattern(new RegExp('[a-zA-Z0-9]'))
             .required()

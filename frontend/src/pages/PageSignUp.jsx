@@ -22,7 +22,7 @@ export default function PageSingUp() {
     const countries = useSelector(store => store.countriesReducer.countries)
 
   return (
-    <div className='flex justify-center bg-black'>
+    <div className='flex-grow flex justify-center bgSignUp'>
         <SignUp countries={countries}/>
     </div>
   )

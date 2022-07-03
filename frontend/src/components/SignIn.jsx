@@ -22,16 +22,11 @@ export default function SignIn() {
     };
     // console.log(logedUser)
     let res = await dispatch(usersAction.signInUser(logedUser));
-    console.log(res)
+
     if(res.data.success){
-      try{
-        navigate('/', {replace: true})
-      }catch(error){
-        console.log(error)
-      }
+      navigate('/')
       toast.success(res.data.message)
     }else{
-      console.log(res)
       toast.error(res.data.message)
       return logedUser
     }
@@ -83,13 +78,7 @@ export default function SignIn() {
         </div>
 
         <div className="flex mt-7 justify-center w-full">
-          <button
-            type="button"
-            className="mr-5 bg-blue-500 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
-          >
-            Facebook
-          </button>
-
+          
           <GoogleSignUp action='login' />
         </div>
 

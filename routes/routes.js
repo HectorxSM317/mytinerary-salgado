@@ -3,7 +3,7 @@ const validatorSignUp = require('../config/validatorSignUp')
 const passport = require('../config/passport')
 const {getCities, getOneCity, addCity, modifyCity, removeCity } = require('../controllers/citiesControllers');
 const {getItinerary, getOneItinerary, addItinerary, modifyItinerary, removeItinerary, getItineratyForCity} = require('../controllers/itineraryControllers');
-const { signUpUser, signInUser, verifyEmail, checkToken  } = require('../controllers/userControlllers')
+const { signUpUser, signInUser, verifyEmail, checkToken, modifyUser  } = require('../controllers/userControlllers')
 
 
 // ---Cities---
@@ -42,6 +42,8 @@ Router.route('/verify/:string')
 Router.route('/singInToken')
 .get(passport.authenticate('jwt', {session: false}), checkToken)
 
+Router.route('/user/:id')
+.put(modifyUser) 
 
 
 

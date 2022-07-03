@@ -2,7 +2,7 @@ import React from "react";
 
 
 export default function CardDetail({ city }) {
-  console.log(city);
+
 
   return (
     <div className="flex flex-col items-center">

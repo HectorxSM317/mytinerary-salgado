@@ -8,11 +8,9 @@ const usersAction = {
     signUpUser: (userData) => {
 
         return async (dispatch, getState) => {
-            console.log(userData)
             const res = await axios.post(apiUrl + 'api/register', {
                 userData
             })
-            console.log(res)
             dispatch({
                 type: "MESSAGE",
                 payload: {
@@ -28,10 +26,7 @@ const usersAction = {
 
     signInUser: (logedUser) => {
         return async (dispatch, getState) => {
-            const res = await axios.post(apiUrl + 'api/login', {
-                logedUser
-            })
-            console.log(res.data.response)
+            const res = await axios.post(apiUrl + 'api/login', {logedUser})
             if (res.data.success) {
                 localStorage.setItem('token', res.data.response.token)
 
@@ -55,7 +50,6 @@ const usersAction = {
     },
 
     checkToken: (token) => {
-        console.log(token)
         return async (dispatch, getState) => {
             await axios.get(apiUrl + 'api/singInToken', {
                     headers: {
@@ -64,7 +58,6 @@ const usersAction = {
                 })
 
                 .then(user => {
-                    console.log(user)
                     if (user.data.success) {
                         dispatch({
                             type: 'USER',
@@ -96,6 +89,20 @@ const usersAction = {
 
                 })
         }
+    },
+
+    modifyUser : (userData) => {
+        console.log(userData)
+        return async (dispatch, getState) => {
+            const id = getState().userReducer.user.id
+            console.log(id)
+            const res = await axios.put(apiUrl+ 'api/user/'+id, {userData}) 
+            console.log(res)
+            
+        }
+
+
+
     }
 }
 

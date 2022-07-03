@@ -5,7 +5,7 @@ import usersAction from "../redux/actions/usersAction";
 import {useNavigate} from 'react-router-dom'
 import toast from "react-hot-toast";
 
-export default function GoogleSignUp({ action }) {
+export default function GoogleSignUp({ action, country }) {
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
@@ -13,7 +13,9 @@ export default function GoogleSignUp({ action }) {
   // console.log(fn);
 
   async function handleCallbackResponse(response) {
+    console.log(response)
     let userObject = jwt_decode(response.credential);
+    console.log(userObject)
     let res = await dispatch(
         fn({
         firstName: userObject.given_name,
@@ -21,10 +23,11 @@ export default function GoogleSignUp({ action }) {
         email: userObject.email,
         password: userObject.sub,
         photoUser: userObject.picture,
-        country: "internet",
+        country: country,
         from: "google",
       })
     );
+  console.log(res)
     if (res.data.success) {
       try {
         navigate("/", { replace: true });
@@ -40,6 +43,7 @@ export default function GoogleSignUp({ action }) {
 
   useEffect(() => {
     /* global google */
+    
     google.accounts.id.initialize({
       client_id:
         "323118145428-kv7uv19cjuhukko3ubbv5p2n4qv6a7eb.apps.googleusercontent.com",
@@ -50,7 +54,7 @@ export default function GoogleSignUp({ action }) {
       theme: "outline",
       size: "medium",
     });
-  });
+});
 
   return (
     <div>

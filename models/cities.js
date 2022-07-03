@@ -7,8 +7,6 @@ const citySchema = new mongoose.Schema({
     description: {type:String, required:true},
     caruselImg: {type:String, required:true},
     detailImg1: {type:String, required:true},
-    detailImg2: {type:String, required:true},
-    detailImg3: {type:String, required:true},
 
 })
 

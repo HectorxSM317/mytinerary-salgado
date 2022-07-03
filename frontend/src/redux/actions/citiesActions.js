@@ -18,7 +18,6 @@ const citiesActions = {
     getOneCity: (id) => {
         return async (dispatch, getState) =>{
             const res = await axios(apiUrl+`api/cities/${id}`)
-            console.log(res)
             dispatch({type: 'GETONECITY', payload: res.data.response})
         }
     },

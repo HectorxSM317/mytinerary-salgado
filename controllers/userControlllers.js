@@ -30,7 +30,6 @@ const userControllers = {
                     password: [hashWord],
                     from: [from]
                 })
-                console.log(myNewUser)
                 if (from === "signUpForm") { 
                     await myNewUser.save()
                     await sendVerification(email, uniqueString)
@@ -74,7 +73,6 @@ const userControllers = {
                 }
             }
         } catch (error) {
-            console.log(error)
             res.json({
                 success: false,
                 from: from,
@@ -114,7 +112,6 @@ const userControllers = {
                 }
                 if (from === "signUpForm") { //si fue registrado por nuestro formulario
                     if(loginUser.verification){
-                        console.log(loginUser.verification)
                         const userData = { //este objeto lo utilizaremos cuando veamos TOKEN
                             id: loginUser._id,
                             email: loginUser.email,
@@ -160,7 +157,6 @@ const userControllers = {
                 }
             }
         } catch (error) {
-            console.log(error)
             res.json({
                 success: false,
                 from: from,
@@ -183,7 +179,7 @@ const userControllers = {
     },
 
     checkToken: (req, res) => {
-        console.log(req)
+        console.log('asd'+req.user)
         if(req.user){
             res.json({
                 success: true,
@@ -191,14 +187,32 @@ const userControllers = {
                     id:req.user.id,
                     firstName:req.user.firstName,
                     email: req.user.email,
+                    photoUser: req.user.photoUser,
                     from: 'token'},
-                message: 'Bienvenido nuevamente '+req.user.firstName})
+                message: 'WElcome '+req.user.firstName})
         }else{
             res.json({
                 success: false,
                 message: 'Por Favor realiza SingIn nuevamente'})
         }
-    }
+    },
+
+    modifyUser: async (req, res) => {
+        const id = req.params.id 
+        const user = req.body.userData
+        let userDb
+        let error = null
+        try {
+            userDb = await User.findOneAndUpdate({_id : id}, user, {new: true}) 
+        } catch (err) {
+            error = err
+        }
+        res.json({
+            response: error ? 'ERROR' : userDb,
+            success: error ? false : true,
+            error: error
+        })
+    },
 
 }
 
