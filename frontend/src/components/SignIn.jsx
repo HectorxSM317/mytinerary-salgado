@@ -22,6 +22,7 @@ export default function SignIn() {
     };
     // console.log(logedUser)
     let res = await dispatch(usersAction.signInUser(logedUser));
+    // console.log(res)
 
     if(res.data.success){
       navigate('/')
@@ -33,10 +34,10 @@ export default function SignIn() {
   };
 
   return (
-    <div className="w-11/12 sm:w-10/12 md:w-8/12 lg:w-1/2 rounded-3xl  px-3 py-4 my-5 bg-gray-100 shadow-md">
+    <div className="w-11/12 bg sm:w-10/12 md:w-8/12 lg:w-1/2 rounded-3xl  px-3 py-4 my-5">
       <label
         htmlFor=""
-        className="block mt-3 text-sm text-gray-700 text-center font-semibold"
+        className="block mt-3 text-5xl text-center text-white textPopular"
       >
         Sign In
       </label>
@@ -46,9 +47,8 @@ export default function SignIn() {
             type="text"
             name="name"
             placeholder="Email address..."
-            className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 p-2"
+            className="mt-1 block w-full bg-white border-none h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 p-2"
           />
-          {/* {nameError && <p className='text-red-600'>* {nameError}</p> } */}
         </div>
 
         <div className="mt-2">
@@ -56,7 +56,7 @@ export default function SignIn() {
             type="password"
             name="lastName"
             placeholder="Password ..."
-            className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 p-2"
+            className="mt-1 block w-full bg-white border-none h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 p-2"
           />
         </div>
 
@@ -71,7 +71,7 @@ export default function SignIn() {
 
         <div className="flex mt-7 items-center text-center">
           <hr className="border-gray-300 border-1 w-full rounded-md" />
-          <label className="block font-medium text-sm text-gray-600 w-full">
+          <label className="block text-5xl text-center text-white textPopular w-full ">
             With
           </label>
           <hr className="border-gray-300 border-1 w-full rounded-md" />
@@ -84,7 +84,7 @@ export default function SignIn() {
 
         <div className="mt-7">
           <div className="flex justify-center items-center">
-            <label className="mr-2">Dont have a account?</label>
+            <label className="mr-2 text-white">Don't have a account?</label>
             <LinkRouter
               to={"/signup"}
               href="#"

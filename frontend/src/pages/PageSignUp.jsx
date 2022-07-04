@@ -20,10 +20,12 @@ export default function PageSingUp() {
     },[])
 
     const countries = useSelector(store => store.countriesReducer.countries)
+    const countryFilter = countries.filter(country => country.name.length < 20)
+  
 
   return (
     <div className='flex-grow flex justify-center bgSignUp'>
-        <SignUp countries={countries}/>
+        <SignUp countries={countryFilter}/>
     </div>
   )
 }

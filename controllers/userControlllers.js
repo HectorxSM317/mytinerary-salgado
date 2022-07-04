@@ -44,7 +44,7 @@ const userControllers = {
                     res.json({
                         success: true,
                         from: from,
-                        message: `you SIGNED UP by ${from}! now LOG IN!`
+                        message: `you sign up by ${from}! now LOG IN!`
                     })
                 }
             } else { //si existe el usuario, significa que al menos tiene un registro
@@ -68,7 +68,7 @@ const userControllers = {
                     res.json({
                         success: true,
                         from: from,
-                        message: `check ${email} to confirm your SIGN UP!`
+                        message: `You've just signed up by ${from}! now LOG IN!`
                     })
                 }
             }
@@ -184,12 +184,15 @@ const userControllers = {
             res.json({
                 success: true,
                 response: {
-                    id:req.user.id,
-                    firstName:req.user.firstName,
-                    email: req.user.email,
-                    photoUser: req.user.photoUser,
-                    from: 'token'},
-                message: 'WElcome '+req.user.firstName})
+                    "userData": {
+                        id:req.user.id,
+                        firstName:req.user.firstName,
+                        email: req.user.email,
+                        photoUser: req.user.photoUser,
+                        from: 'token'
+                    }
+                    },
+                message: 'Welcome '+req.user.firstName})
         }else{
             res.json({
                 success: false,

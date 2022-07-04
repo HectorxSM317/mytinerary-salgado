@@ -23,7 +23,7 @@ export default function Navbar() {
   const dispatch = useDispatch()
 
   let user = useSelector(store => store.userReducer.user)
-  console.log(user)
+
 
 
   return (
@@ -75,8 +75,8 @@ export default function Navbar() {
                        <RiAccountPinCircleLine style={{width:'30px', height:'30px', color: 'white'}}/>
                        :
                         <div className='flex items-center gap-2 pl-2'>
-                          <p className='text-white'>{user.firstName}</p>
-                          <img className='w-8 h-8 rounded-full object-fit' src={user.photoUser} alt='user'/>
+                          <p className='text-white'>{user.userData.firstname}</p>
+                          <img className='w-8 h-8 rounded-full object-fit' src={user.userData.photoUser} alt='user'/>
                           </div>}
                     </Menu.Button>
                   </div>

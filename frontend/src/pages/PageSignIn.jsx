@@ -11,7 +11,7 @@ export default function PageSignIn() {
   }, []);
 
   return (
-    <div className='flex-grow flex justify-center bg-black'>
+    <div className='flex-grow flex justify-center bgSignin'>
         <SignIn />
     </div>
   )

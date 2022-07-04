@@ -39,7 +39,7 @@ const citiesControllers = {
     
     addCity: async (req, res) => {
         const {name, country, description, caruselImg, detailImg1} = req.body 
-        console.log(req.body)
+        // console.log(req.body)
         let city;
         let error = null;
         try {

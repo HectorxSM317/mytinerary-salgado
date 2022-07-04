@@ -7,6 +7,7 @@ import {useNavigate} from 'react-router-dom'
 // import {ShowToast} from "./ShowToast";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import { set } from "mongoose";
 
 export default function SingUp({ countries }) {
   const dispatch = useDispatch();
@@ -22,34 +23,38 @@ export default function SingUp({ countries }) {
 
   async function handleSubmit (event) {
     event.preventDefault();
-    checkpassword()
-console.log(country)
-    const userData = {
-      firstName: firstName,
-      lastName: lastName,
-      email:email,
-      password:password,
-      photoUser: photoUser,
-      country: country,
-      from: "signUpForm",
-    };
-    
-    let res = await dispatch(usersAction.signUpUser(userData));
-    if(res.data.success){
-      toast.success(res.data.message)
+    if(checkpassword()){
+      const userData = {
+        firstName: firstName,
+        lastName: lastName,
+        email:email,
+        password:password,
+        photoUser: photoUser,
+        country: country,
+        from: "signUpForm",
+      };
       
-        navigate('/', {replace: false})
+      let res = await dispatch(usersAction.signUpUser(userData));
+      if(res.data.success){
+        toast.success(res.data.message)
+        
+          navigate('/', {replace: false})
+        
+      }else{
+        res.data.message.map(msg =>{
+          return toast.error(msg.message)
+      })}
       
-    }else{
-      res.data.message.map(msg =>{
-        return toast.error(msg.message)
-    })}
+    }
+
     
   };
 
   function checkpassword(){
     if(password === passwordConfirm){
       return true
+    }else{
+      return false
     }
   }
 
@@ -70,20 +75,24 @@ console.log(country)
             <p>Or register</p>
         </div>
 
-        <div className="my-4 flex justify-center">
+        <div className="my-4 flex h-40 justify-center">
             <select
             onChange={e => setCountry(e.target.value)}
-              type="input"
+              
+              type="Select"
               name="country"
               placeholder="Select Country"
-              className="mt-1 block w-10/12 bg-slate-300/50 border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 p-2"
+              className="mt-1 block w-10/12 bg-slate-300/50 border-none h-12 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 p-2"
             >
-              <option  value="">Select your country</option>
-              {countries?.map((country) => (
-                <option key={country.name} value={country.name}>
-                  {country.name}
-                </option>
+              
+                <option  value="">Select your country</option>
+                
+                {countries?.map((country) => (
+                  <option key={country.name} value={country.name}>
+                    {country.name}
+                  </option>
               ))}
+              
             </select>
           </div>
           {country ? <div className="flex my-5 justify-center w-full">
@@ -132,21 +141,28 @@ console.log(country)
         </div>
         <div className="mt-2">
           <input
-            onKeyUp={e => setPassword(e.target.value)}
+            onKeyUp={e => {
+              setPassword(e.target.value)
+              setPasswordConfirm(e.target.value)
+            }
+            } 
             type="password"
             name="pass"
             placeholder="password"
             className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 p-2"
           />
+          {checkpassword() ? <p></p> : <p className="text-red-700">* los password no coinciden</p>}
         </div>
         <div className="mt-2">
           <input
+          
             onKeyUp={e => setPasswordConfirm(e.target.value)}
             type="password"
             name="passwordConfirm"
             placeholder="password Confirm"
             className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 p-2"
           />
+          {checkpassword() ? <p></p> : <p className="text-red-700">* los password no coinciden</p>}
         </div>
         <div className="mt-2">
           <input
