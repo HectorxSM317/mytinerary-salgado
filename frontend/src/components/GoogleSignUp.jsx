@@ -27,7 +27,7 @@ export default function GoogleSignUp({ action, country }) {
         from: "google",
       })
     );
-  console.log(res)
+  // console.log(res)
     if (res.data.success) {
       try {
         navigate("/", { replace: true });
