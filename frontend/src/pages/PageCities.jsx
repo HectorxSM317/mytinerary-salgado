@@ -17,27 +17,14 @@ export default function PageCities() {
   const dispatch = useDispatch() //Permite traer las acciones
   const [searchInput, setSearchinput] = useState("");
 
-  // useEffect(() => {
-  //   dispatch(citiesActions.getCities) 
-    
-  // })
-  // const cities = useSelector (store => store.citiesReducer.cities) //useSelector trae estados del componentes
-  // console.log(cities)
+  
   useEffect(() => {
     dispatch(citiesActions.filterCities(searchInput))
-    
+    // eslint-disable-next-line
   },[searchInput])
   
   const citiesFilter = useSelector ( store => store.citiesReducer.filterCity)
-  // console.log(citiesFilter)
-
-
-  // let citiesFilter = cities.filter((city) =>
-  // city.name.toLowerCase().startsWith(searchInput.toLowerCase().trim())
-  // )
-
-
-
+  
   
   return (
     <div className="flex flex-col items-center bg-contain bg-[url('https://images.unsplash.com/photo-1638376776402-9a4b75fe21bb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=677&q=80')] ">

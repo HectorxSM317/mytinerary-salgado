@@ -35,7 +35,7 @@ const usersAction = {
             }
             dispatch({
                 type: "USER",
-                payload: res.data.response
+                payload: res.data.response.userData
             });
             return res
         }
@@ -53,13 +53,11 @@ const usersAction = {
 
     checkToken: (token) => {
         return async (dispatch, getState) => {
-            await axios.get(apiUrl + 'api/singInToken', {
-                    headers: {
-                        'Authorization': 'Bearer ' + token
-                    }
+            await axios.get(apiUrl + 'api/singInToken', {headers: {'Authorization': 'Bearer ' + token}
                 })
 
                 .then(user => {
+                    // console.log(user.data)
                     if (user.data.success) {
                         dispatch({
                             type: 'USER',
@@ -73,6 +71,8 @@ const usersAction = {
                                 success: user.data.success
                             }
                         })
+                        
+                        // localStorage.setItem('token', user.data.response.token)
                     } else {
                         localStorage.removeItem('token')
                     }

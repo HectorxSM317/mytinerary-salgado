@@ -26,6 +26,7 @@ useEffect(() => {
   },[])
 
   const city = useSelector(store => store.citiesReducer.oneCity)
+  // console.log(city)
 
 
   if(!city){

@@ -179,19 +179,20 @@ const userControllers = {
     },
 
     checkToken: (req, res) => {
-        console.log('asd'+req.user)
+        // console.log('asd'+req.user)
         if(req.user){
+            // const userData = req.user
+            // const token = jwt.sign({...userData}, process.env.SECRET_KEY, {expiresIn: 60* 60*24})
             res.json({
                 success: true,
                 response: {
-                    "userData": {
-                        id:req.user.id,
-                        firstName:req.user.firstName,
-                        email: req.user.email,
-                        photoUser: req.user.photoUser,
-                        from: 'token'
-                    }
-                    },
+                    id:req.user.id,
+                    firstName:req.user.firstName,
+                    email: req.user.email,
+                    photoUser: req.user.photoUser,
+                    from: 'token',
+                    // 'token': token
+                },
                 message: 'Welcome '+req.user.firstName})
         }else{
             res.json({

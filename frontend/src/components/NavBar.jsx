@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
+// eslint-disable-next-line
 import {Link, Link as LinkRouter} from 'react-router-dom'
 import { RiAccountPinCircleLine } from "react-icons/ri";
 import { useSelector } from 'react-redux';
@@ -23,6 +24,7 @@ export default function Navbar() {
   const dispatch = useDispatch()
 
   let user = useSelector(store => store.userReducer.user)
+
 
 
 
@@ -75,8 +77,8 @@ export default function Navbar() {
                        <RiAccountPinCircleLine style={{width:'30px', height:'30px', color: 'white'}}/>
                        :
                         <div className='flex items-center gap-2 pl-2'>
-                          <p className='text-white'>{user.userData.firstname}</p>
-                          <img className='w-8 h-8 rounded-full object-fit' src={user.userData.photoUser} alt='user'/>
+                          <p className='text-white'>{user.firstName}</p>
+                          <img className='w-8 h-8 rounded-full object-fit' src={user.photoUser} alt='user'/>
                           </div>}
                     </Menu.Button>
                   </div>

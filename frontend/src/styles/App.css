@@ -161,3 +161,7 @@
   background-size: cover;
   background-position: 50% 60%;
 }
+
+input:checked ~ .tab-content {
+  max-height: fit-content;
+}

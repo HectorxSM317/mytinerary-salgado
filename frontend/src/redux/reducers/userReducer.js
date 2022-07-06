@@ -8,7 +8,6 @@ const initialState = {
 }
 
 const userReducer = (state = initialState, action) => {
-    console.log(state)
     switch (action.type) {
         case 'USER':
             return {
@@ -24,4 +23,5 @@ const userReducer = (state = initialState, action) => {
             return state
     }
 }
+
 export default userReducer

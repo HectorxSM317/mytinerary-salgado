@@ -22,7 +22,7 @@ export default function SignIn() {
     };
     // console.log(logedUser)
     let res = await dispatch(usersAction.signInUser(logedUser));
-    // console.log(res)
+    
 
     if(res.data.success){
       navigate('/')
