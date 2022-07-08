@@ -39,7 +39,7 @@ const activitiesControllers = {
     
     addActivity: async (req, res) => {
         const {name, image, itinerary} = req.body 
-        // console.log(req.body)
+        
         let activities;
         let error = null;
         try {
@@ -79,7 +79,7 @@ const activitiesControllers = {
 
     removeActivity: async (req, res) => {
         const id = req.params.id
-        // console.log(id)
+        
         let activities
         let error = null
         try {
@@ -95,9 +95,9 @@ const activitiesControllers = {
     },
 
     getActivityForItinerary: async (req, res)=>{
-        // console.log(req.params.id)
+        
         const id = req.params.id
-        // console.log(id)
+       
         let activityForItinerary;
         let error;
 
@@ -107,7 +107,7 @@ const activitiesControllers = {
         }catch(err){
             error = err
         }
-        // console.log(activityForItinerary)
+       
         res.json({
             response: error? 'ERROR' : activityForItinerary,
             success: error ? false : true,

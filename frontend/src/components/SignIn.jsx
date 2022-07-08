@@ -14,19 +14,17 @@ export default function SignIn() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // console.log(event)
     const logedUser = {
       email: event.target[0].value,
       password: event.target[1].value,
       from: "signUpForm",
     };
-    // console.log(logedUser)
     let res = await dispatch(usersAction.signInUser(logedUser));
     
 
     if(res.data.success){
       navigate('/')
-      toast.success(res.data.message)
+      toast(res.data.message)
     }else{
       toast.error(res.data.message)
       return logedUser

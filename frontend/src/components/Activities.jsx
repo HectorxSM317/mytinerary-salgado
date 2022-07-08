@@ -4,7 +4,6 @@ import activitiesActions from '../redux/actions/activitiesActions';
 
 
 export default function Activities({id}) {
-  // console.log(id)
   const dispatch = useDispatch()
   const [activities, setActivities] = useState([])
 
@@ -19,7 +18,7 @@ export default function Activities({id}) {
     
   },[id])
   
-  // console.log(activities)
+
 
   return (
     <div className='w-11/12 flex flex-wrap justify-center py-5 gap-2'>

@@ -7,8 +7,6 @@ const jwt = require('jsonwebtoken')
 const userControllers = {
 
     signUpUser: async (req, res) => {
-        // console.log('REQ BODY SIG UP USER')
-        // console.log(req.body.userData)
         const {
             firstName,
             lastName,
@@ -82,8 +80,6 @@ const userControllers = {
     },
 
     signInUser: async (req, res) => {
-        // console.log('REQ BODYloged')
-        // console.log(req.body.logedUser)
         const {
             email,
             password,
@@ -92,9 +88,8 @@ const userControllers = {
         try {
             const loginUser = await User.findOne({
                 email
-            }) //buscamos por email
-            // console.log(loginUser)
-            if (!loginUser) { //si NO existe el usuario
+            }) 
+            if (!loginUser) { 
                 res.json({
                     success: false,
                     from: 'no from',
@@ -179,10 +174,7 @@ const userControllers = {
     },
 
     checkToken: (req, res) => {
-        // console.log('asd'+req.user)
         if(req.user){
-            // const userData = req.user
-            // const token = jwt.sign({...userData}, process.env.SECRET_KEY, {expiresIn: 60* 60*24})
             res.json({
                 success: true,
                 response: {

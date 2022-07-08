@@ -5,45 +5,56 @@ import itineraryAction from "../redux/actions/itineraryAction";
 import NotItinerary from "./NotItinerary";
 import Activities from './Activities';
 import Comments from "./Comments";
+import toast from "react-hot-toast";
+// import ContainerComments from "./ContainerComments";
+
+
 
 
 export default function Itineraries({id}) {
+  
   let emoticon = '💵';
 let emoticonLike = '❤'
 let noEmoticonLike = '🤍'
 
 const dispatch = useDispatch()
-const [likes, setLikes] = useState()
+const [reload, setReload] = useState(false)
 const [itineraries, setItineraries] = useState()
 
 
 
 useEffect( () => {
 
-  dispatch(itineraryAction.getItineraryFromCity(id))
+  dispatch(itineraryAction.getItineratyForCity(id))
   
     .then(itineraries => setItineraries(itineraries.data.response))        
   
   
-},[likes])
+},[reload])
 
-console.log(itineraries)
 
-// const itineraries = useSelector(store => store.itineraryReducer.itineraries)
-// console.log(itineraries)
 const user = useSelector(store => store.userReducer.user)
-console.log(user)
+
+
 
  async function  likeDislike(idItinerary){
 const res = await dispatch(itineraryAction.likeDislike(idItinerary))
-console.log(res.data.response)
-
-setLikes(res.data.response)
+  if(res.data.message === true){
+    toast('Done Like!', {
+      icon: '👍',
+    });
+  }else{
+    toast('Done Dislike!', {
+      icon: '👎',
+    });
+  } 
+setReload(!reload)
 
 }
 
 
   return (
+    
     <div className="flex flex-col gap-5 pb-5 w-full items-center">
 
       {itineraries?.length > 0 ? 
@@ -84,7 +95,9 @@ setLikes(res.data.response)
                 </div>
               :
               <div className='text-xl'>
-                <button>
+                <button onClick={() => toast('login please',{
+                  icon: '🔴'
+                })}>
                   {noEmoticonLike}
                   </button>
                 </div>
@@ -120,7 +133,7 @@ setLikes(res.data.response)
                       <div className="tab-content">
                           <div className="rounded-b-2xl flex flex-col items-center">
                             <Activities id={iti?._id}/>
-                            {/* <Comments user={user}/> */}
+                            <Comments user={user} itinerary={iti}/>
                           </div>
                       </div>
                   </div>

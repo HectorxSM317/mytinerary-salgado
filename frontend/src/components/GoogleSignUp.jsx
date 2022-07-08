@@ -10,12 +10,9 @@ export default function GoogleSignUp({ action, country }) {
   const navigate = useNavigate()
 
   const fn = action === "login" ? usersAction.signInUser : usersAction.signUpUser;
-  // console.log(fn);
 
   async function handleCallbackResponse(response) {
-    // console.log(response)
     let userObject = jwt_decode(response.credential);
-    // console.log(userObject)
     let res = await dispatch(
         fn({
         firstName: userObject.given_name,
@@ -27,7 +24,6 @@ export default function GoogleSignUp({ action, country }) {
         from: "google",
       })
     );
-  // console.log(res)
     if (res.data.success) {
       try {
         navigate("/", { replace: true });

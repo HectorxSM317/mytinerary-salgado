@@ -12,17 +12,7 @@ export default function Settings() {
   const [firstName, setFirstName] = useState(userSetting.firstName)
   const [lastName, setLastName] = useState(userSetting.lastName)
   const [photoUser, setPhotoUser] = useState(userSetting.photoUser) 
-  // const [country, setCountry] = useState()
- 
-
-  // const user = useSelector(store => store.userReducer.user)
-  // console.log(user)
-
   
-
-
-
-
   return (
     <div className='flex-grow flex justify-center bgSettings'>
       

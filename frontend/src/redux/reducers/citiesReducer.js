@@ -21,7 +21,7 @@ const citiesReducer = (state = initialState, action) => {
             }
         case 'FILTERCITIES':
             let filter = state.cities.filter(city => city.name.toLowerCase().startsWith(action.payload.toLowerCase().trim()))
-            // console.log(action.payload)
+           
             return {
                 ...state,
                 filterCity: filter

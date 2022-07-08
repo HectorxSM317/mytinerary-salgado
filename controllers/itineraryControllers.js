@@ -22,7 +22,7 @@ const itinerariesControllers = {
         let itinerary
         let error = null
         try {
-            itinerary = await Itinerary.findOne({_id: id})
+            itinerary = await Itinerary.findOne({_id: id}).populate('comments.userID', {firstName: 1, lastName:1, photoUser: 1})
         } catch (err){
             error = err
         }
@@ -94,7 +94,7 @@ const itinerariesControllers = {
 
     getItineratyForCity: async (req,res)=>{
         const id = req.params.id
-        // console.log(id)
+
         let itineraryForCity
         let error
 
@@ -114,20 +114,17 @@ const itinerariesControllers = {
 
     likeDislike: async (req, res) => {
         const id = req.params.id //ID del itinerario que queremos agregar o quitar el like, llega por parametro de axios
-        // console.log(id)
         const user = req.user.id //respuesta de passport
-        // console.log(user)
 
         const itinerary = await Itinerary.findOne({_id: id})
-        console.log(itinerary)
         try{
             if(itinerary.likes.includes(user)){
                 Itinerary.findOneAndUpdate({_id : id}, {$pull:{likes:user}}, {new:true})
-                .then(newItinerary => res.json({success:true, response: newItinerary.likes}))
+                .then(newItinerary => res.json({success:true, message: false, response: newItinerary.likes}))
                 .catch((error) => console.log(error))
             }else{
                 Itinerary.findOneAndUpdate({_id : id}, {$push:{likes:user}}, {new:true})
-                .then(newItinerary => res.json({success:true, response: newItinerary.likes}))
+                .then(newItinerary => res.json({success:true, message: true, response: newItinerary.likes}))
                 .catch((error) => console.log(error))
             }
         }catch{(error) => res.json({success: false, response: error})}

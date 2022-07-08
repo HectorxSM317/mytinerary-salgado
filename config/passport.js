@@ -13,11 +13,11 @@ module.exports = passport.use(new jwtStrategy(
     (jwt_payload, done) => {
     User.findOne({ _id : jwt_payload.id})
     .then(user => {
-        // console.log(user)
+        
         if(user){
             return done(null, user)
         }else if(err){
-            // console.log(err)
+          
             return done(err, false)
         }else{
             return done(null, false)
@@ -26,7 +26,7 @@ module.exports = passport.use(new jwtStrategy(
 
     })
     .catch(err => {
-        // console.log(err.status)
+        console.log(err.status)
         return done(err, false)
     })
 

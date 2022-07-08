@@ -46,7 +46,7 @@ export default function Navbar() {
                 </Disclosure.Button>
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-between">
-                <LinkRouter to='/' className='text-white fontLogo text-3xl font-bold self-start'>My T</LinkRouter>
+                <LinkRouter to='/' className='text-white mr-10 sm:mr-0 flex-shrink fontLogo text-3xl font-bold self-start'>My T</LinkRouter>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
@@ -130,7 +130,7 @@ export default function Navbar() {
                         {({ active }) => (
                           <LinkRouter
                             onClick={() => {dispatch(usersAction.logoutUser())
-                              toast('😢')
+                              toast('See you later 😊')
                             }
                           }
                             to={'/'}
