@@ -4,15 +4,16 @@ import usersAction from "../redux/actions/usersAction";
 import { Link, Link as LinkRouter } from "react-router-dom";
 import GoogleSignUp from "./GoogleSignUp";
 import {useNavigate} from 'react-router-dom'
-// import {ShowToast} from "./ShowToast";
 import toast from "react-hot-toast";
 import { useState } from "react";
-import { set } from "mongoose";
+
 
 export default function SingUp({ countries }) {
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
+
+  
   const [firstName, setFirstName] = useState()
   const [lastName, setLastName] = useState()
   const [email, setEmail] = useState()
@@ -97,7 +98,7 @@ export default function SingUp({ countries }) {
           </div>
           {country ? <div className="flex my-5 justify-center w-full">
           <GoogleSignUp action='signUp' country={country}/>
-        </div> : <div></div> }
+        </div> : null}
 
         
       </div>
@@ -151,7 +152,7 @@ export default function SingUp({ countries }) {
             placeholder="password"
             className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 p-2"
           />
-          {checkpassword() ? <p></p> : <p className="text-red-700">* los password no coinciden</p>}
+          {checkpassword() ? <p></p> : <p className="text-red-700">* Passwords do not match</p>}
         </div>
         <div className="mt-2">
           <input
@@ -162,7 +163,7 @@ export default function SingUp({ countries }) {
             placeholder="password Confirm"
             className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 p-2"
           />
-          {checkpassword() ? <p></p> : <p className="text-red-700">* los password no coinciden</p>}
+          {checkpassword() ? <p></p> : <p className="text-red-700">* Passwords do not match</p>}
         </div>
         <div className="mt-2">
           <input

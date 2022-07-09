@@ -32,7 +32,7 @@ useEffect( () => {
   
 },[reload])
 
-
+console.log(itineraries)
 const user = useSelector(store => store.userReducer.user)
 
 
@@ -89,7 +89,7 @@ setReload(!reload)
               {user ? 
               <div className='text-xl'>
                 <button onClick={() => likeDislike(iti?._id)}>
-                  {iti?.likes.includes(user.id) ? 
+                  {iti?.likes.includes(user.userData?.id) ? 
                 <p>{emoticonLike}</p> : <p>{noEmoticonLike}</p>}
                   </button>
                 </div>

@@ -96,7 +96,7 @@ const itinerariesControllers = {
         const id = req.params.id
 
         let itineraryForCity
-        let error
+        let error = null
 
         try{
             itineraryForCity = await Itinerary.find({city:id})

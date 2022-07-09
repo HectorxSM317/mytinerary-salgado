@@ -16,7 +16,7 @@ export default function GoogleSignUp({ action, country }) {
     let res = await dispatch(
         fn({
         firstName: userObject.given_name,
-        lastName: userObject.family_name,
+        lastName: userObject.family_name || "",
         email: userObject.email,
         password: userObject.sub,
         photoUser: userObject.picture,
@@ -50,7 +50,7 @@ export default function GoogleSignUp({ action, country }) {
       theme: "outline",
       size: "medium",
     });
-});
+},[]);
 
   return (
     <div>

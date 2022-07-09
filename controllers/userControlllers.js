@@ -111,6 +111,7 @@ const userControllers = {
                             id: loginUser._id,
                             email: loginUser.email,
                             firstName: loginUser.firstName,
+                            lastName: loginUser.lastName,
                             photoUser: loginUser.photoUser,
                             from: loginUser.from
                         }
@@ -178,11 +179,14 @@ const userControllers = {
             res.json({
                 success: true,
                 response: {
-                    id:req.user.id,
-                    firstName:req.user.firstName,
-                    email: req.user.email,
-                    photoUser: req.user.photoUser,
-                    from: 'token',
+                    userData:{
+                        id:req.user.id,
+                        firstName:req.user.firstName,
+                        lastName: req.user.lastName,
+                        email: req.user.email,
+                        photoUser: req.user.photoUser,
+                        from: 'token',
+                    }
                     // 'token': token
                 },
                 message: 'Welcome '+req.user.firstName})

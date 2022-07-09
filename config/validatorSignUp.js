@@ -8,7 +8,7 @@ const validatorSignUp = (req, res, next) => {
         .messages({'string.min': 'Name: min 4 characters'}),
         lastName: joi.string()
         .min(4)
-        .required()
+        
         .messages({'string.min': 'LastName: min 3 characters'}),
         email: joi.string()
             .email({minDomainSegments: 2})
