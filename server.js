@@ -14,6 +14,10 @@ app.use(express.json())
 app.use(passport.initialize())
 app.use('/api', Router) 
 
+app.get("/", (req, res) => {
+    res.send('El server funciona')
+})
+
 
 app.listen(PORT, () =>{
     console.log('Server ready on port ' + PORT)
