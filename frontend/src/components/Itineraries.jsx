@@ -24,17 +24,11 @@ const [itineraries, setItineraries] = useState()
 
 
 useEffect( () => {
-
   dispatch(itineraryAction.getItineratyForCity(id))
-  
-    .then(itineraries => setItineraries(itineraries.data.response))        
-  
-  
+      .then(itineraries => setItineraries(itineraries.data.response))          
 },[reload])
 
-console.log(itineraries)
 const user = useSelector(store => store.userReducer.user)
-
 
 
  async function  likeDislike(idItinerary){

@@ -19,6 +19,7 @@ import { Toaster } from 'react-hot-toast';
 import usersAction from "../src/redux/actions/usersAction"
 import { useSelector } from 'react-redux';
 import Settings from './pages/Settings';
+import NavBarDos from './components/NavBarDos';
 
 
 export default function App() {
@@ -45,7 +46,10 @@ export default function App() {
   
   return (
     <div className="App">
+      
       <Navbar />
+      
+      {/* <NavBarDos /> */}
       <Toaster 
       position="top-center"
       reverseOrder={true} />

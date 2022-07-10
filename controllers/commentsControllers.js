@@ -34,7 +34,7 @@ const commentsControllers = {
     },
     deleteComment: async (req, res) => {
         const id = req.params.id
-        const user = req.user._id
+       
         try {
             const deleteComment = await Itinerary.findOneAndUpdate({"comments._id":id}, {$pull: {comments: {_id: id}}}, {new: true})
             res.json({ success: true, response:{deleteComment},toast:true, message: "has eliminado el comentario" })

@@ -3,8 +3,10 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import commentsAction from '../redux/actions/commentsAction'
 import toast from "react-hot-toast";
+import { FcNeutralDecision } from "react-icons/fc";
 
 export default function Comment({comment, user, setReload}) {
+  console.log(comment)
     const dispatch =  useDispatch()
 
     const [inputModiFy, setInputModify] = useState(comment.comment)
@@ -26,8 +28,6 @@ export default function Comment({comment, user, setReload}) {
         setEditable(false)
       }
 
-      console.log(inputModiFy)
-      console.log(comment.comment)
     
       async function deleteComment(id){
     
@@ -41,7 +41,8 @@ export default function Comment({comment, user, setReload}) {
               <div className="relative flex flex-col" >
                 <div className="flex gap-5 border-y-2">
                   <div className="flex justify-center flex-col items-center ">
-                    <img className="w-12 h-12 rounded-full object-fit" src={comment.userID.photoUser} alt="user" />
+                  {comment.userID.photoUser ? <img className="w-12 h-12 rounded-full object-fit" src={comment.userID.photoUser} alt="user" /> : <FcNeutralDecision /> }
+                    
                     <p className="text-white">{comment.userID.firstName}</p>
                   </div>
                   <div className='flex-grow my-3 gap-3 flex flex-col sm:flex-row'>

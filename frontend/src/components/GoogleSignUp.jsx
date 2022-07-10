@@ -25,11 +25,7 @@ export default function GoogleSignUp({ action, country }) {
       })
     );
     if (res.data.success) {
-      try {
-        navigate("/", { replace: true });
-      } catch (error) {
-        console.log(error);
-      }
+      navigate("/")
       toast.success(res.data.message)
     } else {
       toast.error(res.data.message)

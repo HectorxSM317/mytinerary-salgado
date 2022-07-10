@@ -4,7 +4,13 @@ import { BsInstagram } from "react-icons/bs";
 import { BsWhatsapp } from "react-icons/bs";
 import { BsLinkedin } from "react-icons/bs";
 import { Link as LinkRouter } from "react-router-dom";
+import { FaCity } from "react-icons/fa";
+import { AiFillHome } from "react-icons/ai";
+import { GoSignIn } from "react-icons/go";
+import { GiArchiveRegister } from "react-icons/gi";
+
 import "../styles/App.css";
+
 
 const navigation = [
   { name: "Home", to: "/", current: false },
@@ -34,7 +40,11 @@ export default function Footer() {
               )}
               aria-current={item.current ? "page" : undefined}
             >
-              {item.name}
+              {item.name === "Home" ?<div className='flex items-center gap-1'> <AiFillHome /> {item.name}</div> :
+               item.name === "Cities" ? <div className='flex items-center gap-1'> <FaCity /> {item.name} </div> :
+                item.name === "Sign In" ? <div className='flex items-center gap-1'><GoSignIn /><p>{item.name}</p></div>:
+                 <div className='flex items-center gap-1'><GiArchiveRegister /><p>{item.name}</p></div> }
+             
             </LinkRouter>
           ))}
         </div>

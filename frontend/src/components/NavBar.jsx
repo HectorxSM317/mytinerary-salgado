@@ -8,6 +8,9 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import usersAction from '../redux/actions/usersAction';
 import toast from "react-hot-toast";
+import { FcSettings } from "react-icons/fc";
+import { FaCity } from "react-icons/fa";
+import { AiFillHome, AiFillApi } from "react-icons/ai";
 
 
 const navigation = [
@@ -30,12 +33,12 @@ export default function Navbar() {
 
 
   return (
-    <Disclosure as="nav" className="bg-black">
+    <Disclosure as="nav">
       {({ open }) => (
         <>
-          <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-            <div className="relative flex items-center justify-between h-16">
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+          <div className="w-full absolute pt-2">
+            <div className="relative flex items-center h-20 px-5">
+              <div className="inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
                 <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
@@ -46,10 +49,12 @@ export default function Navbar() {
                   )}
                 </Disclosure.Button>
               </div>
+                  
+
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-between">
-                <LinkRouter to='/' className='text-white mr-10 sm:mr-0 flex-shrink fontLogo text-3xl font-bold self-start'>My T</LinkRouter>
-                <div className="hidden sm:block sm:ml-6">
-                  <div className="flex space-x-4">
+                <LinkRouter to='/' className='text-white mr-10 sm:mr-0 hidden md:block flex-shrink fontLogo sm:text-5xl font-bold self-start'>My T</LinkRouter>
+                <div className="hidden sm:block">
+                  <div className="flex space-x-4 justify-center items-center">
                     {navigation.map((item) => (
                       <LinkRouter
                         key={item.name}
@@ -60,26 +65,26 @@ export default function Navbar() {
                         )}
                         aria-current={item.current ? 'page' : undefined}
                       >
-                        {item.name}
+                        {item.name === "Home" ?<div className='flex items-center gap-1 text-2xl'> <AiFillHome /> {item.name}</div> : <div className='flex items-center gap-1 text-2xl'> <FaCity /> {item.name} </div>}
+                        
                       </LinkRouter>
                     ))}
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                
 
+              <div className="absolute inset-y-0 right-5 sm:right-0 flex items-center sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {/* Profile dropdown */}
                 <Menu as="div" className="ml-3 relative z-10">
                   <div>
-                    <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                    <Menu.Button className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                       <span className="sr-only">Open user menu</span>
                       {!user ?
                        <RiAccountPinCircleLine style={{width:'30px', height:'30px', color: 'white'}}/>
                        :
-                        <div className='flex items-center gap-2 pl-2'>
-                          <p className='text-white'>{user.userData.firstName}</p>
-                          <img className='w-8 h-8 rounded-full object-fit' src={user.userData.photoUser} alt='user'/>
+                        <div className='flex items-center gap-2 sm:pl-2'>
+                          <p className='text-white text-2xl hidden sm:block'>{user.userData.firstName}</p>
+                          <img className='w-11 h-11 sm:w-14 sm:h-14 rounded-full object-fit' src={user.userData.photoUser ? user.userData.photoUser : null} alt='user'/>
                           </div>}
                     </Menu.Button>
                   </div>
@@ -117,17 +122,18 @@ export default function Navbar() {
                     </Menu.Items>
                     :
                     <Menu.Items className="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item>
+                      <Menu.Item className="flex items-center gap-2 ml-3">
                         {({ active }) => (
                           <LinkRouter
                             to={'/settings'}
+                          
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
-                            Settings
+                           <FcSettings /> Setting  
                           </LinkRouter>
                         )}
                       </Menu.Item>
-                      <Menu.Item>
+                      <Menu.Item className="flex items-center gap-2 ml-3">
                         {({ active }) => (
                           <LinkRouter
                             onClick={() => {dispatch(usersAction.logoutUser())
@@ -137,7 +143,7 @@ export default function Navbar() {
                             to={'/'}
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
-                            Sign Out
+                           <AiFillApi /> Sign Out
                           </LinkRouter>
                         )}
                       </Menu.Item>
@@ -149,16 +155,16 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1">
+          <Disclosure.Panel className="sm:hidden absolute left-1 top-16">
+            <div className="w-fit flex flex-col gap-3 z-10">
               {navigation.map((item) => (
                 <LinkRouter
                   key={item.name}
                   as="LinkRouter"
                   to={item.to}
                   className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block px-3 py-2 rounded-md text-base font-medium'
+                    item.current ? 'bg-gray-900 text-white' : 'text-black italic border-2 bg-amber-400 border-zinc-600 hover:bg-gray-700 hover:text-white',
+                    'block px-3 py-1 rounded-md text-base font-medium'
                   )}
                   aria-current={item.current ? 'page' : undefined}
                 >
@@ -167,6 +173,7 @@ export default function Navbar() {
               ))}
             </div>
           </Disclosure.Panel>
+          
         </>
       )}
     </Disclosure>

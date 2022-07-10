@@ -12,6 +12,7 @@ import Itineraries from '../components/Itineraries'
 export default function Detail() {
   const {id} = useParams();
   const dispatch = useDispatch()
+  
  
   useEffect(() => {
     setTimeout(() => {
@@ -29,7 +30,8 @@ useEffect(() => {
 
 
   if(!city){
-    return (<div className=" shadow rounded-md p-4 min-h-screen flex items-center justify-center max-w-sm w-full mx-auto">
+    return (
+    <div className=" shadow rounded-md p-4 min-h-screen  flex items-center justify-center max-w-sm w-full mx-auto">
     <div className="animate-pulse flex space-x-4">
       <div className="rounded-full bg-slate-700 h-10 w-10"></div>
       <div className="flex-1 space-y-6 py-1">
@@ -50,7 +52,7 @@ useEffect(() => {
   return (
     <div className='flex flex-col flex-grow items-center bg-gradient-to-br from-black via-zinc-900 to-black'>
 
-    <div className="bodyDetail flex justify-center">
+    <div className="bodyDetail flex justify-center mt-16">
     <CardDetail city={city}  />
     </div>
 

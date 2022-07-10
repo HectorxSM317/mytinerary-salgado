@@ -12,11 +12,7 @@ export default function Comments(props) {
   const [commentaries, setCommentaries] = useState();
   const [inputComment, setInputComment] = useState("");
   const [reload, setReload] = useState(false);
-
-  console.log(inputComment);
-
-  // console.log(user)
-  console.log(commentaries);
+ 
   useEffect(() => {
     async function itinerary() {
       const res = await dispatch(
