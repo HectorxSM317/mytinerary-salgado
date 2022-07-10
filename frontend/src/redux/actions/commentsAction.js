@@ -23,7 +23,6 @@ const commentsAction = {
                         success: res.data.success
                     }
                 })
-                console.log(res)
                 return res
             }
             else {

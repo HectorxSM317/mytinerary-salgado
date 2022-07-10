@@ -40,7 +40,7 @@ const itineraryAction = {
                 
             }catch (error){
                 
-                console.log(error)
+                
             }
         }
     }

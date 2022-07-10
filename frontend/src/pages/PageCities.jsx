@@ -27,7 +27,7 @@ export default function PageCities() {
   
   
   return (
-    <div className="flex flex-col items-center bg-contain bg-[url('https://images.unsplash.com/photo-1638376776402-9a4b75fe21bb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=677&q=80')] ">
+    <div className="flex flex-col pt-10 items-center bg-contain bg-[url('https://images.unsplash.com/photo-1638376776402-9a4b75fe21bb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=677&q=80')] ">
       <HeroCity />
       <div className="flex flex-col items-center mt-5 w-11/12 ">
         <div data-aos="flip-left" data-aos-duration="2000" className="z-10 mt-8">

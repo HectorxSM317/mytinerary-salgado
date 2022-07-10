@@ -52,7 +52,7 @@ useEffect(() => {
   return (
     <div className='flex flex-col flex-grow items-center bg-gradient-to-br from-black via-zinc-900 to-black'>
 
-    <div className="bodyDetail flex justify-center mt-16">
+    <div className="bodyDetail flex justify-center mt-20">
     <CardDetail city={city}  />
     </div>
 

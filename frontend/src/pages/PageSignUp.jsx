@@ -9,7 +9,7 @@ export default function PageSingUp() {
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 200);
-  }, []);
+  },[]);
   
 
     const dispatch = useDispatch()

@@ -26,7 +26,6 @@ const citiesControllers = {
         } catch (err) {
             // city ? error = err : error = 'not found'
             error = err
-            console.log(error)
         }
         res.json({
             response: error ? 'ERROR' : city,
@@ -39,7 +38,6 @@ const citiesControllers = {
     
     addCity: async (req, res) => {
         const {name, country, description, caruselImg, detailImg1} = req.body 
-        // console.log(req.body)
         let city;
         let error = null;
         try {

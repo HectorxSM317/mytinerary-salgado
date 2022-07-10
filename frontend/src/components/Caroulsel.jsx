@@ -1,12 +1,9 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-// import { cities } from "../data";
 import { Autoplay, Pagination, Grid, Navigation} from "swiper";
 import React from "react";
 import { connect } from "react-redux";
 import citiesActions from '../redux/actions/citiesActions'
 
-
-// Import Swiper styles
 import "swiper/css/bundle";
 import "swiper/css/pagination";
 import "swiper/css/grid";
@@ -16,12 +13,6 @@ import '../styles/App.css'
 
 
 function Carousel(props) {
-
-
-
-
-
-
 
   return (
     <div className="border-t-8 bg-black flex flex-col items-center justify-center h-screen">

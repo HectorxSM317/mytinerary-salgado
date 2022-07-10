@@ -27,7 +27,7 @@ const usersAction = {
     signInUser: (logedUser) => {
         return async (dispatch, getState) => {
             const res = await axios.post(apiUrl + 'api/login', {logedUser})
-            console.log(res)
+            
             if (res.data.success) {
                 localStorage.setItem('token', res.data.response.token)
 
@@ -56,7 +56,7 @@ const usersAction = {
                 })
 
                 .then(user => {
-                    console.log(user)
+                  
                     if (user.data.success) {
                         dispatch({
                             type: 'USER',
@@ -92,12 +92,10 @@ const usersAction = {
         }
     },
 
-    modifyUser : (userData) => {
-      
+    modifyUser : (userData, id) => {
         return async (dispatch, getState) => {
-            const id = getState().userReducer.user.id
-          
-            const res = await axios.put(apiUrl+ 'api/user/'+id, {userData}) 
+           
+            await axios.put(apiUrl+ 'api/user/'+id, {userData}) 
        
             
         }

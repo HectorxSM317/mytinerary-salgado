@@ -18,7 +18,7 @@ export default function Index() {
 
   return (
     <div className="body">
-      <div className="flex flex-col bgImageMain border-b-8 sm:pt-20">
+      <div className="flex flex-col bgImageMain border-b-8 pt-20">
         <MyTinerary />
         <div className="flex flex-col justify-center items-center sm:mt-10 sm:pt-10 lg:pt-0">
           <Button />

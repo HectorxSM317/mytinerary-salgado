@@ -11,6 +11,8 @@ import toast from "react-hot-toast";
 import { FcSettings } from "react-icons/fc";
 import { FaCity } from "react-icons/fa";
 import { AiFillHome, AiFillApi } from "react-icons/ai";
+import { GoSignIn } from "react-icons/go";
+import { GiArchiveRegister } from "react-icons/gi";
 
 
 const navigation = [
@@ -27,10 +29,6 @@ export default function Navbar() {
   const dispatch = useDispatch()
 
   let user = useSelector(store => store.userReducer.user)
-  console.log(user)
-
-
-
 
   return (
     <Disclosure as="nav">
@@ -98,31 +96,31 @@ export default function Navbar() {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     {!user ? 
-                    <Menu.Items className="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item>
+                    <Menu.Items className="origin-top-right p-2 absolute right-0 mt-2 w-32 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <Menu.Item className="flex items-center py-2 gap-2 ml-3">
                         {({ active }) => (
                           <LinkRouter
                             to={'/signin'}
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
-                            Sign In
+                            <GoSignIn /> Sign In
                           </LinkRouter>
                         )}
                       </Menu.Item>
-                      <Menu.Item>
+                      <Menu.Item className="flex items-center py-2 gap-2 ml-3">
                         {({ active }) => (
                           <LinkRouter
                             to={'/signup'}
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
-                            Sign Up
+                           <GiArchiveRegister /> Sign Up
                           </LinkRouter>
                         )}
                       </Menu.Item>
                     </Menu.Items>
                     :
                     <Menu.Items className="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item className="flex items-center gap-2 ml-3">
+                      <Menu.Item className="flex items-center py-2 gap-2 ml-3">
                         {({ active }) => (
                           <LinkRouter
                             to={'/settings'}
@@ -133,7 +131,7 @@ export default function Navbar() {
                           </LinkRouter>
                         )}
                       </Menu.Item>
-                      <Menu.Item className="flex items-center gap-2 ml-3">
+                      <Menu.Item className="flex items-center py-2 gap-2 ml-3">
                         {({ active }) => (
                           <LinkRouter
                             onClick={() => {dispatch(usersAction.logoutUser())
@@ -155,7 +153,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden absolute left-1 top-16">
+          <Disclosure.Panel className="sm:hidden absolute left-1 top-20 z-10">
             <div className="w-fit flex flex-col gap-3 z-10">
               {navigation.map((item) => (
                 <LinkRouter

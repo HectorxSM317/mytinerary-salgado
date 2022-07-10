@@ -11,7 +11,7 @@ import { MdCallMerge as MySVG } from "react-icons/md";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import citiesActions from './redux/actions/citiesActions'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import PageSignUp from './pages/PageSignUp';
 import PageSignIn from './pages/PageSignIn';
@@ -19,19 +19,21 @@ import { Toaster } from 'react-hot-toast';
 import usersAction from "../src/redux/actions/usersAction"
 import { useSelector } from 'react-redux';
 import Settings from './pages/Settings';
-import NavBarDos from './components/NavBarDos';
+
 
 
 export default function App() {
   const dispatch = useDispatch()
   AOS.init();
 
+  const[reload, setReload] = useState(false)
+
   useEffect(() => {
     if(localStorage.getItem('token') !== null){
       const token = localStorage.getItem('token')
       dispatch(usersAction.checkToken(token))
     }
-  }, [])
+  }, [!reload])
 
   useEffect(() => {
     // props.getCities()
@@ -62,7 +64,7 @@ export default function App() {
           <Route path='/detail/:id' element={<Detail />} />
           {!user && <Route path='/signin' element={<PageSignIn />} />}
           {!user && <Route path='/signup' element={<PageSignUp />} />}
-          {user && <Route path='/settings' element={<Settings />} />}
+          {user && <Route path='/settings' element={<Settings setReload={setReload}/>} />}
           
       </Routes>
       <Footer />

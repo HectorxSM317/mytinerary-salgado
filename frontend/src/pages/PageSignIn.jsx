@@ -8,7 +8,7 @@ export default function PageSignIn() {
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 200);
-  }, []);
+  },[]);
 
   return (
     <div className='flex-grow flex justify-center bgSignin'>
