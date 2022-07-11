@@ -10,7 +10,7 @@ const commentsAction = {
             const token = localStorage.getItem('token')
 
             if (comment.comment !== "") {
-                const res = await axios.post(apiUrl+`itinerary/comment`, { comment }, {
+                const res = await axios.post(apiUrl+`/itinerary/comment`, { comment }, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -42,7 +42,7 @@ const commentsAction = {
 
         const token = localStorage.getItem('token')
         return async (dispatch, getState) => {
-            const res = await axios.put(apiUrl+`itinerary/comment`, { comment }, {
+            const res = await axios.put(apiUrl+`/itinerary/comment`, { comment }, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -62,7 +62,7 @@ const commentsAction = {
     deleteComment: (id) => {
         const token = localStorage.getItem('token')
         return async (dispatch, getState) => {
-            const res = await axios.post(apiUrl+`itinerary/comment/${id}`, {}, {
+            const res = await axios.post(apiUrl+`/itinerary/comment/${id}`, {}, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
