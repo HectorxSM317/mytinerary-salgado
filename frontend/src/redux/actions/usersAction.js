@@ -1,14 +1,14 @@
 import axios from 'axios'
 
 
-let apiUrl = 'http://localhost:4000/'
+let apiUrl = 'https://mytinerary-salgado.herokuapp.com/api'
 
 const usersAction = {
 
     signUpUser: (userData) => {
 
         return async (dispatch, getState) => {
-            const res = await axios.post(apiUrl + 'api/signup', {
+            const res = await axios.post(apiUrl + '/signup', {
                 userData
             })
             dispatch({
@@ -26,7 +26,7 @@ const usersAction = {
 
     signInUser: (logedUser) => {
         return async (dispatch, getState) => {
-            const res = await axios.post(apiUrl + 'api/login', {logedUser})
+            const res = await axios.post(apiUrl + '/login', {logedUser})
             
             if (res.data.success) {
                 localStorage.setItem('token', res.data.response.token)
@@ -52,7 +52,7 @@ const usersAction = {
 
     checkToken: (token) => {
         return async (dispatch, getState) => {
-            await axios.get(apiUrl + 'api/singInToken', {headers: {'Authorization': 'Bearer ' + token}
+            await axios.get(apiUrl + '/singInToken', {headers: {'Authorization': 'Bearer ' + token}
                 })
 
                 .then(user => {
@@ -95,7 +95,7 @@ const usersAction = {
     modifyUser : (userData, id) => {
         return async (dispatch, getState) => {
            
-            await axios.put(apiUrl+ 'api/user/'+id, {userData}) 
+            await axios.put(apiUrl+ '/user/'+id, {userData}) 
        
             
         }

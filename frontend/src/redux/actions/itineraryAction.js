@@ -2,7 +2,7 @@ import axios from 'axios'
 
 
 
-let apiUrl = 'http://localhost:4000/api'
+let apiUrl = 'https://mytinerary-salgado.herokuapp.com/api'
 
 const itineraryAction = {
 
