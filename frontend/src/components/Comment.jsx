@@ -16,6 +16,7 @@ export default function Comment({ comment, user, setReload }) {
     if (inputModiFy === comment.comment) return;
     if (inputModiFy === ""){
      toast.error("The field can't be empty")
+     setInputModify(comment.comment)
       setReload(r => !r);
       return
     }
