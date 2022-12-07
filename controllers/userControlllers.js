@@ -3,6 +3,7 @@ const bcryptjs = require('bcryptjs')
 const crypto = require('crypto')
 const sendVerification = require('./sendVerification')
 const jwt = require('jsonwebtoken')
+const environments = require('../config/environments')
 
 const userControllers = {
 
@@ -116,7 +117,7 @@ const userControllers = {
                             from: loginUser.from
                         }
                         await loginUser.save()
-                        const token = jwt.sign({...userData}, process.env.SECRET_KEY, {expiresIn: 60* 60*24})
+                        const token = jwt.sign({...userData}, environments.SECRET_KEY, {expiresIn: 60* 60*24})
                         res.json({
                             response: {userData, token},
                             success: true,
@@ -142,7 +143,7 @@ const userControllers = {
                         from: loginUser.from
                     }
                     await loginUser.save()
-                    const token = jwt.sign({...userData}, process.env.SECRET_KEY, {expiresIn: 60* 60*24})
+                    const token = jwt.sign({...userData}, environments.SECRET_KEY, {expiresIn: 60* 60*24})
                     res.json({
                         response: {userData, token},
                         success: true,

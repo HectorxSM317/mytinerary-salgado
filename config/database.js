@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
+const environments = require('./environments')
 
-mongoose.connect(process.env.MONGO_URI,
+mongoose.connect(environments.MONGO_URI,
     {
         useUnifiedTopology: true,
         useNewUrlParser: true,

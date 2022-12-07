@@ -1,17 +1,18 @@
 const nodemailer = require('nodemailer')
 const { google } = require("googleapis")
+const environments = require('../config/environments')
 const OAuth2 = google.auth.OAuth2
 
 const sendVerification = async (email, string) => {
 
     const myOAuth2Client = new OAuth2(
-        process.env.GOOGLE_CLIENTID,
-        process.env.GOOGLE_CLIENTSECRET,
+        environments.GOOGLE_CLIENTID,
+        environments.GOOGLE_CLIENTSECRET,
         "https://developers.google.com/oauthplayground"
     )
 
     myOAuth2Client.setCredentials({
-        refresh_token:process.env.GOOGLE_REFRESHTOKEN
+        refresh_token:environments.GOOGLE_REFRESHTOKEN
     })
 
     const accessToken = myOAuth2Client.getAccessToken()
@@ -21,9 +22,9 @@ const sendVerification = async (email, string) => {
         auth: {
             user: process.env.USER,
             type: "OAuth2",
-            clientId: process.env.GOOGLE_CLIENTID,
-            clientSecret: process.env.GOOGLE_CLIENTSECRET,
-            refreshToken: process.env.GOOGLE_REFRESHTOKEN,
+            clientId: environments.GOOGLE_CLIENTID,
+            clientSecret: environments.GOOGLE_CLIENTSECRET,
+            refreshToken: environments.GOOGLE_REFRESHTOKEN,
             accessToken: accessToken
         },
         tls: {
@@ -32,7 +33,7 @@ const sendVerification = async (email, string) => {
     })
 
     let mailOptions = {
-        from: process.env.USER,
+        from: environments.USER,
         to: email,
         subject: 'verify account',
         html: `
