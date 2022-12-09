@@ -2,7 +2,7 @@ import axios from 'axios'
 import { GETCITIES } from '../reducers/citiesReducer'
 
 
-let apiUrl = 'https://mytinerary-salgado.herokuapp.com/api'
+let apiUrl = 'https://mytinerary-salgado-production.up.railway.app/api'
 
 const citiesActions = {
 
